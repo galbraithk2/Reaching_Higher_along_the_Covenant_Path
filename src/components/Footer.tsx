@@ -14,6 +14,7 @@ export default function Footer() {
         </a>
         .
       </p>
+      <p style={{ marginTop: "8px", fontSize: "12px", opacity: 0.5 }}>v1.0</p>
     </footer>
   );
 }
