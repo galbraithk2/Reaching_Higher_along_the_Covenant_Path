@@ -1,10 +1,12 @@
+import { BASE_PATH } from "@/lib/basePath";
+
 export default function Hero() {
   return (
     <section className="hero">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="hero-img"
-        src="/images/hero.jpg"
+        src={`${BASE_PATH}/images/hero.jpg`}
         alt="Jesus Christ painting by Harry Anderson"
         loading="eager"
         decoding="async"

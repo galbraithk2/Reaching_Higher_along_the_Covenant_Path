@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { BASE_PATH } from "@/lib/basePath";
 
 type Props = {
   isOpen: boolean;
@@ -89,12 +90,12 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
             <h3 className="flyer-card-title">QR Code</h3>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/CovenantPath_QRCode.png"
+              src={`${BASE_PATH}/images/CovenantPath_QRCode.png`}
               alt="QR Code for Covenant Path event"
               className="flyer-qr-img"
             />
             <a
-              href="/images/CovenantPath_QRCode.png"
+              href={`${BASE_PATH}/images/CovenantPath_QRCode.png`}
               download="CovenantPath_QRCode.png"
               className="flyer-btn"
             >
@@ -109,12 +110,12 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
           <div className="flyer-thumb-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/ReachingHigher_Flyer1.png"
+              src={`${BASE_PATH}/images/ReachingHigher_Flyer1.png`}
               alt="Reaching Higher flyer"
               className="flyer-thumb-img"
             />
             <a
-              href="/images/ReachingHigher_Flyer1.png"
+              href={`${BASE_PATH}/images/ReachingHigher_Flyer1.png`}
               download="ReachingHigher_Flyer1.png"
               className="flyer-btn flyer-btn-outline"
             >
