@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Reaching Higher: The Covenant Path",
   description:
-    "Reaching Higher: The Covenant Path — Stake Conference Event, March 21, 2025",
+    "Reaching Higher: The Covenant Path — Stake Conference Event, March 21, 2026",
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
