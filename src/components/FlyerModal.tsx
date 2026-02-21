@@ -83,11 +83,44 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
               ✓ Copied!
             </div>
           </div>
+          <div className="flyer-card">
+            <div className="flyer-card-icon">📱</div>
+            <h3 className="flyer-card-title">QR Code</h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/CovenantPath_QRCode.png"
+              alt="QR Code for Covenant Path event"
+              className="flyer-qr-img"
+            />
+            <a
+              href="/images/CovenantPath_QRCode.png"
+              download="CovenantPath_QRCode.png"
+              className="flyer-btn"
+            >
+              Download QR Code
+            </a>
+          </div>
         </div>
         <div className="flyer-divider">
           <span>Printable Flyers</span>
         </div>
-        <div className="flyer-grid">{/* Flyer thumbnails can go here */}</div>
+        <div className="flyer-grid">
+          <div className="flyer-thumb-card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/ReachingHigher_Flyer1.png"
+              alt="Reaching Higher flyer"
+              className="flyer-thumb-img"
+            />
+            <a
+              href="/images/ReachingHigher_Flyer1.png"
+              download="ReachingHigher_Flyer1.png"
+              className="flyer-btn flyer-btn-outline"
+            >
+              ⬇ Download Flyer 1
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
