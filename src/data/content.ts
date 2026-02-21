@@ -170,7 +170,7 @@ export const classes: ClassItem[] = [
   {
     title: "Organizing Vital Documents",
     schedule: "Every 20 min",
-    location: "YW Room",
+    location: "Young Women\u2019s Room",
     who: "Chantal Cobia",
     desc: "Learn practical strategies to organize your family's vital documents. Get tips on what to keep, how to store it, and how to be prepared for the unexpected.",
   },
