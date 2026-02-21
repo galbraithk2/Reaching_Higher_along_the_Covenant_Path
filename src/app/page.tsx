@@ -46,13 +46,13 @@ export default function Home() {
       <Hero />
       <InviteStrip />
 
-      {categories.map((cat) => (
+      {categories.map((cat, idx) => (
         <ScrollReveal key={cat.key}>
-          <section className="section-wide">
+          <section
+            className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
+          >
             <div className="category-header">
-              <h2>
-                {cat.emoji} {cat.label}
-              </h2>
+              <h2>{cat.emoji} {cat.label}</h2>
               <p>{cat.quote}</p>
             </div>
             <div className="booth-grid">

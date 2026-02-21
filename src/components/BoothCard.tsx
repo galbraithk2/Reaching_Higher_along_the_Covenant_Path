@@ -1,6 +1,7 @@
 "use client";
 
 import type { Booth, CategoryKey } from "@/data/content";
+import { catLabels } from "@/data/content";
 
 type Props = {
   booth: Booth;
@@ -13,7 +14,6 @@ export default function BoothCard({ booth, cat, onOpen, color }: Props) {
   return (
     <div
       className="booth-card"
-      data-cat={cat}
       onClick={() => onOpen(booth.title, booth.who, booth.desc, color)}
       role="button"
       tabIndex={0}
@@ -24,9 +24,14 @@ export default function BoothCard({ booth, cat, onOpen, color }: Props) {
         }
       }}
     >
+      <span className="booth-pill" data-cat={cat}>
+        {catLabels[cat]}
+      </span>
       <h3>{booth.title}</h3>
       <div className="preview">{booth.subtitle || booth.who}</div>
-      <div className="learn-more">Learn more →</div>
+      <div className="learn-more">
+        Learn more <span className="arrow">&rarr;</span>
+      </div>
     </div>
   );
 }

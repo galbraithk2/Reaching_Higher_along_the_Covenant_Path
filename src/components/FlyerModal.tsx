@@ -60,7 +60,8 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
       }}
     >
       <div className="flyer-page">
-        <button className="flyer-close" onClick={onClose}>
+        <div className="flyer-drag-handle" />
+        <button className="flyer-close" onClick={onClose} aria-label="Close">
           &times;
         </button>
         <div className="flyer-header">
@@ -80,7 +81,7 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
               Copy Link
             </button>
             <div className="flyer-copy-confirm" ref={confirmRef}>
-              ✓ Copied!
+              Copied!
             </div>
           </div>
           <div className="flyer-card">
@@ -117,7 +118,7 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
               download="ReachingHigher_Flyer1.png"
               className="flyer-btn flyer-btn-outline"
             >
-              ⬇ Download Flyer 1
+              Download Flyer
             </a>
           </div>
         </div>

@@ -14,9 +14,9 @@ export default function InviteStrip() {
           nesters. Please join us.
         </p>
         <p className="invite-details">
-          <u>Dress casual</u> &middot; <u>Enjoy snacks!</u> &middot; Visit
-          booths &middot; Attend mini classes &middot; Come for 20 minutes or
-          stay the whole morning!
+          Dress casual &middot; Enjoy snacks! &middot; Visit booths &middot;
+          Attend mini classes &middot; Come for 20 minutes or stay the whole
+          morning!
         </p>
       </div>
     </div>

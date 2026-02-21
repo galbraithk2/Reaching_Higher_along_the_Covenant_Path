@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Nunito_Sans } from "next/font/google";
+import { DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-heading",
   display: "swap",
 });
 
-const nunito = Nunito_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
-  variable: "--font-nunito",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "mobile-web-app-capable": "yes",
-    "theme-color": "#1e2d40",
+    "theme-color": "#FAFAFA",
     "format-detection": "telephone=no",
   },
 };
@@ -45,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${nunito.variable}`}>
+      <body className={`${dmSans.variable} ${inter.variable}`}>
         {children}
       </body>
     </html>

@@ -26,10 +26,17 @@ export type ClassItem = {
 export type CategoryKey = "temple" | "missionary" | "rising" | "selfreliance";
 
 export const catColors: Record<CategoryKey, string> = {
-  temple: "var(--temple)",
-  missionary: "var(--missionary)",
-  rising: "var(--rising)",
-  selfreliance: "var(--selfreliance)",
+  temple: "var(--cat-temple)",
+  missionary: "var(--cat-missionary)",
+  rising: "var(--cat-rising)",
+  selfreliance: "var(--cat-selfreliance)",
+};
+
+export const catLabels: Record<CategoryKey, string> = {
+  temple: "Temple & Family History",
+  missionary: "Missionary Work",
+  rising: "Rising Generation",
+  selfreliance: "Self-Reliance",
 };
 
 export const booths: Record<CategoryKey, Booth[]> = {

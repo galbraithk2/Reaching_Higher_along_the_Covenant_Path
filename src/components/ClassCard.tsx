@@ -12,13 +12,13 @@ export default function ClassCard({ classItem, onOpen }: Props) {
 
   const handleClick = () => {
     if (c.useSharedModal) {
-      onOpen(c.title, c.who, c.desc, "var(--selfreliance)");
+      onOpen(c.title, c.who, c.desc, "var(--cat-selfreliance)");
     } else {
       onOpen(
         c.title,
         `${c.who} · ${c.schedule} · ${c.location}`,
         c.desc,
-        "var(--green)"
+        "var(--accent)"
       );
     }
   };
@@ -44,7 +44,9 @@ export default function ClassCard({ classItem, onOpen }: Props) {
           {c.schedule} · {c.location}
         </div>
       )}
-      <div className="learn-more">Learn more →</div>
+      <div className="learn-more">
+        Learn more <span className="arrow">&rarr;</span>
+      </div>
     </div>
   );
 }

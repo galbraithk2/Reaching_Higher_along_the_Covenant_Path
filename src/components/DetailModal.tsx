@@ -16,7 +16,6 @@ export default function DetailModal({
   title,
   who,
   desc,
-  color,
   onClose,
 }: Props) {
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function DetailModal({
       }}
     >
       <div className="modal">
-        <div className="modal-color-bar" style={{ background: color }} />
+        <div className="modal-drag-handle" />
         <button className="modal-close" onClick={onClose} aria-label="Close">
           &times;
         </button>
