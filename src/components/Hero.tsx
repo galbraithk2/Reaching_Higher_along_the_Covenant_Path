@@ -15,8 +15,9 @@ export default function Hero() {
       <div className="hero-content">
         <h1>Reaching Higher: The Covenant Path</h1>
         <div className="hero-subtitle">
-          &ldquo;Covenants are God&rsquo;s promise that as we reach for Him, He
-          will reach for us!&rdquo;
+          &ldquo;Covenants are God&rsquo;s promise that as we reach for Him,
+          <br />
+          He will reach for us!&rdquo;
         </div>
       </div>
     </section>
