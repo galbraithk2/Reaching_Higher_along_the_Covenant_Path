@@ -886,7 +886,6 @@ footer a:hover { text-decoration: underline; }
 <script>
 // ═══ DATA ═══
 
-// Shared entry — edit once, updates both Self-Reliance booth and Mini Classes card
 const jobSearchData = { title: "Job Search, Résumé & Networking", who: "John Ekins", desc: "Get help with your job search, résumé writing, and professional networking. Whether you're just starting out or looking for a change, come get practical career guidance." };
 
 const booths = {
@@ -913,8 +912,7 @@ const booths = {
   ],
   selfreliance: [
     { title: "Addiction Recovery & Mental Health", who: "Madalyn Hunt", desc: "Pick up helpful handouts with trusted resources, local support services, and clear \"who to contact\" information for addiction recovery and mental health support. Learn what programs are available and how to access help for yourself or someone you love." },
-    { title: "Life Skills: Personal Finances & Emotional Resilience", who: "Johnathan & Keli Huskinson", desc: "Explore tools and resources for managing personal finances and building emotional resilience. Discover practical strategies to strengthen temporal and spiritual self-reliance, personally and as a family." },
-    jobSearchData
+    { title: "Life Skills: Personal Finances & Emotional Resilience", who: "Johnathan & Keli Huskinson", desc: "Explore tools and resources for managing personal finances and building emotional resilience. Discover practical strategies to strengthen temporal and spiritual self-reliance, personally and as a family." }
   ]
 };
 
@@ -926,7 +924,7 @@ const classes = [
   { title: "Organizing Vital Documents", schedule: "Every 20 min", location: "Young Women\u2019s Room", who: "Chantal Cobia", desc: "Learn practical strategies to organize your family's vital documents. Get tips on what to keep, how to store it, and how to be prepared for the unexpected." },
   { title: "Family History Q&A", schedule: "All morning", location: "Room TBD", who: "Michelle Nelson, Jacob Jashinsky, & Larry Lovell", desc: "Drop in anytime to ask your family history questions. Get one-on-one guidance and support from experienced family history consultants." },
   { title: "The Teton Dam Disaster", schedule: "All morning", location: "Priesthood Room", who: "John Galbraith", desc: "Explore the history of the Teton Dam disaster — what happened, what was learned, and the inspiring stories of community resilience and faith that followed." },
-  Object.assign({}, jobSearchData, { schedule: "All morning", location: "Room TBD", useSharedModal: true })
+  Object.assign({}, jobSearchData, { schedule: "All morning", location: "Room TBD" })
 ];
 
 // ═══ RENDER ═══
