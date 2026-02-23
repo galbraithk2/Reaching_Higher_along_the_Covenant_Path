@@ -155,7 +155,7 @@ export const classes: ClassItem[] = [
   {
     title: "Take Charge of Technology",
     schedule: "Hourly",
-    location: "RS Room",
+    location: "Relief Society Room",
     who: "YSAs & Jason Flaig",
     desc: "Get help with technology challenges. Young adults offer hands-on assistance with phones, apps, FamilySearch, and other digital tools. Come with your questions and devices!",
   },
