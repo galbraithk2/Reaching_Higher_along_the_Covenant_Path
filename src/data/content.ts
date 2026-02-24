@@ -133,7 +133,6 @@ export const booths: Record<CategoryKey, Booth[]> = {
       who: "Johnathan & Keli Huskinson",
       desc: "Explore tools and resources for managing personal finances and building emotional resilience. Discover practical strategies to strengthen temporal and spiritual self-reliance, personally and as a family.",
     },
-    jobSearchData,
   ],
 };
 
