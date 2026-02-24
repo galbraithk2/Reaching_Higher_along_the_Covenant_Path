@@ -10,6 +10,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="Reaching Higher: The Covenant Path — Stake Conference Event, March 21, 2025">
 <title>Reaching Higher: The Covenant Path</title>
+<link rel="preload" as="image" href="assets/images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -151,38 +152,6 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
   max-width: 1100px;
   margin: 0 auto;
 }
-
-/* ═══ FLYER MODAL STYLES ═══ */
-.flyer-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(20,31,46,0.72);
-  z-index: 1000;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 20px 16px 40px;
-}
-.flyer-backdrop.active { display: flex; align-items: flex-start; justify-content: center; }
-
-.flyer-page {
-  background: var(--warm-bg);
-  border-radius: 16px;
-  width: 100%;
-  max-width: 680px;
-  padding: 28px 24px 32px;
-  position: relative;
-  margin: auto;
-}
-
-.flyer-close {
-  position: absolute;
-  top: 14px; right: 16px;
-  background: none; border: none;
-  font-size: 28px; color: var(--text-light);
-  cursor: pointer; line-height: 1;
-}
-.flyer-close:hover { color: var(--navy); }
 
 .flyer-header { text-align: center; margin-bottom: 24px; }
 .flyer-title {
@@ -384,13 +353,6 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
   margin-top: 2px;
 }
 
-.category-divider {
-  width: 50px;
-  height: 3px;
-  margin: 8px auto 0;
-  border-radius: 2px;
-}
-
 /* ═══ BOOTH CARDS ═══ */
 .booth-grid {
   display: grid;
@@ -513,8 +475,13 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
 /* ═══ CTA ═══ */
 .cta-section {
   background: linear-gradient(135deg, var(--gold), var(--gold-light), #b8953f);
-  padding: 14px 220px 14px 20px;
+  padding: 14px 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   position: relative;
   overflow: hidden;
 }
@@ -528,6 +495,11 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
   font-variant-numeric: lining-nums;
 }
 
+.cta-text {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
 .cta-message {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
@@ -539,16 +511,14 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
   line-height: 1.5;
 }
 
-/* ═══ HANDOUT OVERLAY BOX ═══ */
+/* ═══ HANDOUT BOX ═══ */
 .handout-box {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 24px;
+  padding: 10px 24px;
+  border-radius: 8px;
   background: var(--navy);
   color: #fff;
   font-family: 'Nunito Sans', sans-serif;
@@ -594,8 +564,8 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
 }
 .flyer-close {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 34px; height: 34px;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;
   border: none;
   background: rgba(0,0,0,0.06);
   border-radius: 50%;
@@ -672,12 +642,12 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
 
 .modal-close {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 34px; height: 34px;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;
   border: none;
   background: rgba(0,0,0,0.06);
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--text-light);
   cursor: pointer;
   display: flex;
@@ -737,9 +707,8 @@ footer a:hover { text-decoration: underline; }
   .category-header { margin-bottom: 14px; }
   .modal-body { padding: 18px; }
   .modal h2 { font-size: 20px; }
-  .handout-box { font-size: 10px; padding: 0 12px; }
-  .handout-box svg { display: none; }
-  .cta-section { padding-right: 130px; }
+  .cta-section { flex-direction: column; text-align: center; }
+  .handout-box { width: 100%; justify-content: center; text-align: center; }
 }
 
 @media (min-width: 1200px) {
@@ -750,28 +719,57 @@ footer a:hover { text-decoration: underline; }
 /* iOS notch / dynamic island safe areas */
 @supports (padding-top: env(safe-area-inset-top)) {
   .hero { padding-top: env(safe-area-inset-top); }
-  .disclaimer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
 }
 
 /* Prevent iOS zoom on input focus */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   select, textarea, input[type="text"] { font-size: 16px; }
 }
+
+/* ═══ FOCUS VISIBLE ═══ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.booth-card:focus-visible,
+.class-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--gold-soft);
+}
+
+.modal-close:focus-visible,
+.flyer-close:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .hero-content { animation: none; }
+  .modal-backdrop.active .modal { animation: none; }
+  .booth-card, .class-card { transition: none; }
+}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
+<header>
 <section class="hero">
-  <img class="hero-img" src="assets/images/hero.jpg" alt="Jesus Christ painting by Harry Anderson" loading="eager" decoding="async">
+  <img class="hero-img" src="assets/images/hero.jpg" alt="Jesus Christ painting by Harry Anderson" loading="eager" decoding="async" width="1200" height="400" fetchpriority="high">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>Reaching Higher: The Covenant Path</h1>
     <div class="hero-subtitle">&ldquo;Covenants are God&rsquo;s promise that as we reach for Him, He will reach for us!&rdquo;</div>
   </div>
 </section>
+</header>
 
 <!-- EVENT & INVITATION -->
+<main>
 <div class="invite-strip">
   <div class="invite-inner">
     <p class="invite-date">Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake Center</p>
@@ -784,7 +782,7 @@ footer a:hover { text-decoration: underline; }
 <!-- TEMPLE & FAMILY HISTORY -->
 <section class="section-wide reveal">
   <div class="category-header">
-    <h2>🏛️ Temple &amp; Family History</h2>
+    <h2><span aria-hidden="true">🏛️ </span>Temple &amp; Family History</h2>
     <p>&ldquo;Anytime we do anything that helps anyone — on either side of the veil — to make and keep their covenants with God, we are helping to gather Israel.&rdquo; — President Russell M. Nelson</p>
   </div>
   <div class="booth-grid" id="temple-booths"></div>
@@ -793,7 +791,7 @@ footer a:hover { text-decoration: underline; }
 <!-- MISSIONARY -->
 <section class="section-wide reveal">
   <div class="category-header">
-    <h2>🌍 Missionary Work</h2>
+    <h2><span aria-hidden="true">🌍 </span>Missionary Work</h2>
     <p>&ldquo;Never give up an opportunity to testify of Christ.&rdquo; — President Bonnie H. Cordon</p>
   </div>
   <div class="booth-grid" id="missionary-booths"></div>
@@ -802,7 +800,7 @@ footer a:hover { text-decoration: underline; }
 <!-- RISING GENERATION -->
 <section class="section-wide reveal">
   <div class="category-header">
-    <h2>🌱 Rising Generation</h2>
+    <h2><span aria-hidden="true">🌱 </span>Rising Generation</h2>
     <p>&ldquo;What will matter most is what they learn from [you] about who they really are and what they can really become.&rdquo; — President Henry B. Eyring</p>
   </div>
   <div class="booth-grid" id="rising-booths"></div>
@@ -811,7 +809,7 @@ footer a:hover { text-decoration: underline; }
 <!-- SELF-RELIANCE -->
 <section class="section-wide reveal">
   <div class="category-header">
-    <h2>💪 Self-Reliance</h2>
+    <h2><span aria-hidden="true">💪 </span>Self-Reliance</h2>
     <p>Practical tools and support for life's real challenges</p>
   </div>
   <div class="booth-grid" id="selfreliance-booths"></div>
@@ -821,7 +819,7 @@ footer a:hover { text-decoration: underline; }
 <section class="classes-bg reveal">
   <div class="section-wide">
     <div class="category-header">
-      <h2>📚 Mini Classes</h2>
+      <h2><span aria-hidden="true">📚 </span>Mini Classes</h2>
       <p>Short workshops on topics that matter</p>
     </div>
     <div class="class-grid" id="class-grid"></div>
@@ -830,20 +828,24 @@ footer a:hover { text-decoration: underline; }
 
 <!-- CTA -->
 <section class="cta-section">
-  <p class="cta-date">Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake Center</p>
-  <p class="cta-message">Whether you're chasing toddlers, starting a career, raising teenagers, enjoying retirement, or somewhere in between — please join us!</p>
+  <div class="cta-text">
+    <p class="cta-date">Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake Center</p>
+    <p class="cta-message">Whether you're chasing toddlers, starting a career, raising teenagers, enjoying retirement, or somewhere in between — please join us!</p>
+  </div>
   <button class="handout-box" onclick="openFlyers()">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
     <span>Download Flyers<br>&amp; Shareable Links<br><span class="handout-hint">Tap to view →</span></span>
   </button>
 </section>
 
+</main>
+
 <!-- FLYER MODAL -->
-<div class="flyer-backdrop" id="flyer-backdrop">
+<div class="flyer-backdrop" id="flyer-backdrop" role="dialog" aria-modal="true" aria-labelledby="flyer-modal-title">
   <div class="flyer-page">
-    <button class="flyer-close" onclick="closeFlyers()">&times;</button>
+    <button class="flyer-close" onclick="closeFlyers()" aria-label="Close">&times;</button>
     <div class="flyer-header">
-      <h2 class="flyer-title">Help Spread the Word</h2>
+      <h2 class="flyer-title" id="flyer-modal-title">Help Spread the Word</h2>
       <p class="flyer-subtitle">Share this event with family, friends, and neighbors in your ward.</p>
     </div>
     <div class="flyer-top-row">
@@ -854,13 +856,13 @@ footer a:hover { text-decoration: underline; }
         <button class="flyer-btn" onclick="copyLink()">Copy Link</button>
         <div class="flyer-copy-confirm" id="copy-confirm">✓ Copied!</div>
       </div>
-  
+
     </div>
     <div class="flyer-divider">
       <span>Printable Flyers</span>
     </div>
     <div class="flyer-grid" id="flyer-grid">
-      
+
     </div>
   </div>
 </div>
@@ -871,7 +873,7 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="modal-backdrop">
+<div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
     <div class="modal-color-bar" id="modal-bar"></div>
     <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
@@ -930,6 +932,15 @@ const classes = [
 // ═══ RENDER ═══
 const catColors = { temple: 'var(--temple)', missionary: 'var(--missionary)', rising: 'var(--rising)', selfreliance: 'var(--selfreliance)' };
 
+function activateCard(card, handler) {
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'button');
+  card.addEventListener('click', handler);
+  card.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+  });
+}
+
 function renderBooths(cat, containerId) {
   const el = document.getElementById(containerId);
   booths[cat].forEach(b => {
@@ -937,7 +948,7 @@ function renderBooths(cat, containerId) {
     c.className = 'booth-card';
     c.dataset.cat = cat;
     c.innerHTML = '<h3>' + b.title + '</h3><div class="preview">' + (b.subtitle || b.who) + '</div><div class="learn-more">Learn more →</div>';
-    c.addEventListener('click', function() { openModal(b.title, b.who, b.desc, catColors[cat]); });
+    activateCard(c, function() { openModal(b.title, b.who, b.desc, catColors[cat]); });
     el.appendChild(c);
   });
 }
@@ -950,9 +961,9 @@ function renderClasses() {
     const preview = c.subtitle ? '<div class="class-subtitle">' + c.subtitle + '</div>' : '<div class="meta">' + c.schedule + ' · ' + c.location + '</div>';
     d.innerHTML = '<h4>' + c.title + '</h4>' + preview + '<div class="learn-more">Learn more →</div>';
     if (c.useSharedModal) {
-      d.addEventListener('click', function() { openModal(c.title, c.who, c.desc, 'var(--selfreliance)'); });
+      activateCard(d, function() { openModal(c.title, c.who, c.desc, 'var(--selfreliance)'); });
     } else {
-      d.addEventListener('click', function() { openModal(c.title, c.who + ' · ' + c.schedule + ' · ' + c.location, c.desc, 'var(--green)'); });
+      activateCard(d, function() { openModal(c.title, c.who + ' · ' + c.schedule + ' · ' + c.location, c.desc, 'var(--green)'); });
     }
     el.appendChild(d);
   });
@@ -964,20 +975,53 @@ renderBooths('rising', 'rising-booths');
 renderBooths('selfreliance', 'selfreliance-booths');
 renderClasses();
 
+// ═══ FOCUS TRAP UTILITY ═══
+var lastFocusedElement = null;
+
+function trapFocus(container) {
+  var focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  first.focus();
+  container._trapHandler = function(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  };
+  container.addEventListener('keydown', container._trapHandler);
+}
+
+function releaseFocus(container) {
+  if (container._trapHandler) {
+    container.removeEventListener('keydown', container._trapHandler);
+    delete container._trapHandler;
+  }
+  if (lastFocusedElement) { lastFocusedElement.focus(); lastFocusedElement = null; }
+}
+
 // ═══ MODAL ═══
 
 function openModal(title, who, desc, color) {
+  lastFocusedElement = document.activeElement;
   document.getElementById('modal-title').innerHTML = title;
   document.getElementById('modal-who').textContent = who;
   document.getElementById('modal-desc').innerHTML = desc;
   document.getElementById('modal-bar').style.background = color;
-  document.getElementById('modal-backdrop').classList.add('active');
+  var backdrop = document.getElementById('modal-backdrop');
+  backdrop.classList.add('active');
   document.body.style.overflow = 'hidden';
+  trapFocus(backdrop);
 }
 
 function closeModal() {
-  document.getElementById('modal-backdrop').classList.remove('active');
+  var backdrop = document.getElementById('modal-backdrop');
+  backdrop.classList.remove('active');
   document.body.style.overflow = '';
+  releaseFocus(backdrop);
 }
 
 document.getElementById('modal-backdrop').addEventListener('click', function(e) {
@@ -1008,13 +1052,18 @@ function copyLink() {
 
 // ═══ FLYER MODAL ═══
 function openFlyers() {
-  document.getElementById('flyer-backdrop').classList.add('active');
+  lastFocusedElement = document.activeElement;
+  var backdrop = document.getElementById('flyer-backdrop');
+  backdrop.classList.add('active');
   document.body.style.overflow = 'hidden';
+  trapFocus(backdrop);
 }
 
 function closeFlyers() {
-  document.getElementById('flyer-backdrop').classList.remove('active');
+  var backdrop = document.getElementById('flyer-backdrop');
+  backdrop.classList.remove('active');
   document.body.style.overflow = '';
+  releaseFocus(backdrop);
 }
 
 document.getElementById('flyer-backdrop').addEventListener('click', function(e) {
