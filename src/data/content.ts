@@ -133,6 +133,21 @@ export const booths: Record<CategoryKey, Booth[]> = {
       who: "Johnathan & Keli Huskinson",
       desc: "Explore tools and resources for managing personal finances and building emotional resilience. Discover practical strategies to strengthen temporal and spiritual self-reliance, personally and as a family.",
     },
+    {
+      title: "Are You Ready for the First 96 Hours?<br><span class=\"title-sub\">Building Your Emergency Kit</span>",
+      who: "Stake Emergency Committee",
+      desc: "Learn what belongs in a 96-hour emergency kit and why the first four days matter most. See a fully assembled kit, pick up a checklist, and get practical tips on building or updating your own — one step at a time.",
+    },
+    {
+      title: "Does Your Family Have a Plan?<br><span class=\"title-sub\">Family Emergency Preparedness</span>",
+      who: "Stake Emergency Committee",
+      desc: "When an emergency hits, will your family know what to do and where to go? Learn how to create a simple family emergency plan — including communication, meeting points, and what to prepare now so you're not scrambling later.",
+    },
+    {
+      title: "How Can I Help?<br><span class=\"title-sub\">Volunteering in a Crisis</span>",
+      who: "Stake Emergency Committee",
+      desc: "When disaster strikes, organized volunteers make all the difference. Learn how the Church and community coordinate emergency response, what roles are needed, and how you can sign up to serve — before or after an emergency happens.",
+    },
   ],
 };
 
@@ -145,7 +160,7 @@ export const classes: ClassItem[] = [
     desc: "Join President Wells for a brief, uplifting message about walking the covenant path. Sessions repeat every 20 minutes throughout the morning.",
   },
   {
-    title: "President Kristin Galbraith<br>Teaching within the Home",
+    title: "President Kristin Galbraith<br><span class=\"title-sub\">Teaching within the Home</span>",
     schedule: "Every 20 min",
     location: "High Council Room",
     who: "Stake Relief Society President - Kristin Galbraith",
@@ -167,7 +182,7 @@ export const classes: ClassItem[] = [
     desc: '<div class="modal-image-row"><img src="/Reaching_Higher_along_the_Covenant_Path/images/couple.JPG" alt="Ancestors photograph" class="modal-feature-img" /><p>Step into a powerful, hands-on workshop where technology meets legacy. In this inspiring class, you\u2019ll learn how to use AI tools to transform still photographs of your ancestors into living, moving story moments. We\u2019ll guide you step-by-step in bringing faces from the past to life\u2014allowing you to see expressions, movement, and personality in a way that feels deeply personal and unforgettable.</p></div><p style="margin-top:14px">This isn\u2019t just about animation; it\u2019s about connection. It\u2019s about honoring sacrifice, strengthening identity, and helping families feel the presence of those who came before them. Come discover how AI can be used for the highest good\u2014to preserve stories, spark emotion, and bridge generations.</p><a href="https://youtu.be/Ve4pYvrI5UU?si=4R8eAsq4G7po11Id" target="_blank" rel="noopener noreferrer" class="yt-card"><span class="yt-icon"><svg viewBox="0 0 24 24" width="40" height="40"><rect width="24" height="24" rx="4" fill="#FF0000"/><polygon points="10,7.5 16,12 10,16.5" fill="#fff"/></svg></span><span class="yt-card-text"><span class="yt-card-label">WATCH ON YOUTUBE</span><span class="yt-card-title">Ancestors Brought to Life</span><span class="yt-card-sub">Sicily Clark &middot; Full presentation</span></span><span class="yt-card-arrow">&rsaquo;</span></a>',
   },
   {
-    title: "Did I Remember Everything?<br>Organizing Vital Documents",
+    title: "Did I Remember Everything?<br><span class=\"title-sub\">Organizing Vital Documents</span>",
     schedule: "Every 20 min",
     location: "Young Women\u2019s Room",
     who: "Chantal Cobia",
