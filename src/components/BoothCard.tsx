@@ -27,7 +27,7 @@ export default function BoothCard({ booth, cat, onOpen, color }: Props) {
       <span className="booth-pill" data-cat={cat}>
         {catLabels[cat]}
       </span>
-      <h3>{booth.title}</h3>
+      <h3 dangerouslySetInnerHTML={{ __html: booth.title }} />
       <div className="preview">{booth.subtitle || booth.who}</div>
       <div className="learn-more">
         Learn more <span className="arrow">&rarr;</span>
