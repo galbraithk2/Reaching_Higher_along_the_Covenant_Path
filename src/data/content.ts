@@ -133,6 +133,21 @@ export const booths: Record<CategoryKey, Booth[]> = {
       who: "Johnathan & Keli Huskinson",
       desc: "Explore tools and resources for managing personal finances and building emotional resilience. Discover practical strategies to strengthen temporal and spiritual self-reliance, personally and as a family.",
     },
+    {
+      title: "Are You Ready for the First 96 Hours?<br>Building Your Emergency Kit",
+      who: "Stake Emergency Committee",
+      desc: "Learn what belongs in a 96-hour emergency kit and why the first four days matter most. See a fully assembled kit, pick up a checklist, and get practical tips on building or updating your own — one step at a time.",
+    },
+    {
+      title: "Does Your Family Have a Plan?<br>Family Emergency Preparedness",
+      who: "Stake Emergency Committee",
+      desc: "When an emergency hits, will your family know what to do and where to go? Learn how to create a simple family emergency plan — including communication, meeting points, and what to prepare now so you're not scrambling later.",
+    },
+    {
+      title: "How Can I Help?<br>Volunteering in a Crisis",
+      who: "Stake Emergency Committee",
+      desc: "When disaster strikes, organized volunteers make all the difference. Learn how the Church and community coordinate emergency response, what roles are needed, and how you can sign up to serve — before or after an emergency happens.",
+    },
   ],
 };
 
