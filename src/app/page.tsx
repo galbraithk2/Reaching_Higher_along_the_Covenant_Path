@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Hero from "@/components/Hero";
 import InviteStrip from "@/components/InviteStrip";
+import SectionNav from "@/components/SectionNav";
 import ScrollReveal from "@/components/ScrollReveal";
 import BoothCard from "@/components/BoothCard";
 import ClassCard from "@/components/ClassCard";
@@ -45,10 +46,12 @@ export default function Home() {
     <>
       <Hero />
       <InviteStrip />
+      <SectionNav />
 
       {categories.map((cat, idx) => (
         <ScrollReveal key={cat.key}>
           <section
+            id={cat.key}
             className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
           >
             <div className="category-header">
@@ -71,7 +74,7 @@ export default function Home() {
       ))}
 
       <ScrollReveal>
-        <section className="classes-bg">
+        <section id="classes" className="classes-bg">
           <div className="section-wide">
             <div className="category-header">
               <h2>📚 Mini Classes</h2>
