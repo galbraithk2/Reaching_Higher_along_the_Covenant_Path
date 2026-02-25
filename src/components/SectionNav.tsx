@@ -63,6 +63,7 @@ export default function SectionNav() {
           <button
             key={item.id}
             className={`section-nav-btn${active === item.id ? " section-nav-btn--active" : ""}`}
+            data-cat={item.id}
             onClick={() => scrollTo(item.id)}
             type="button"
           >

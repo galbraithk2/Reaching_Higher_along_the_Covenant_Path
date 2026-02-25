@@ -158,13 +158,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ═══ SECTIONS ═══ */
 .section {
-  padding: 64px 20px;
+  padding: 40px 20px;
   max-width: 960px;
   margin: 0 auto;
 }
 
 .section-wide {
-  padding: 64px 20px;
+  padding: 40px 20px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -262,19 +262,27 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Category-tinted nav pills */
+.section-nav-btn[data-cat="temple"]       { color: var(--cat-temple);       background: var(--cat-temple-soft); }
+.section-nav-btn[data-cat="missionary"]   { color: var(--cat-missionary);   background: var(--cat-missionary-soft); }
+.section-nav-btn[data-cat="rising"]       { color: var(--cat-rising);       background: var(--cat-rising-soft); }
+.section-nav-btn[data-cat="selfreliance"] { color: var(--cat-selfreliance); background: var(--cat-selfreliance-soft); }
+.section-nav-btn[data-cat="classes"]      { color: var(--accent);           background: var(--accent-soft); }
+
 .section-nav-btn:hover {
-  color: var(--text-primary);
-  background: var(--surface);
-  border-color: var(--text-muted);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+  filter: brightness(0.97);
 }
 
+/* Active state — filled with category color, white text */
 .section-nav-btn--active {
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-color: var(--accent-border);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
+.section-nav-btn--active[data-cat="temple"]       { background: var(--cat-temple);       color: #fff; border-color: var(--cat-temple); }
+.section-nav-btn--active[data-cat="missionary"]   { background: var(--cat-missionary);   color: #fff; border-color: var(--cat-missionary); }
+.section-nav-btn--active[data-cat="rising"]       { background: var(--cat-rising);       color: #fff; border-color: var(--cat-rising); }
+.section-nav-btn--active[data-cat="selfreliance"] { background: var(--cat-selfreliance); color: #fff; border-color: var(--cat-selfreliance); }
+.section-nav-btn--active[data-cat="classes"]      { background: var(--accent);           color: #fff; border-color: var(--accent); }
 
 /* Show full labels on wider screens, short labels on narrow */
 .section-nav-short { display: none; }
@@ -955,11 +963,11 @@ footer a:hover { text-decoration: underline; }
 @media (max-width: 768px) {
   .booth-grid { grid-template-columns: 1fr; }
   .class-grid { grid-template-columns: 1fr; }
-  .section-wide, .section { padding: 48px 16px; }
+  .section-wide, .section { padding: 36px 16px; }
 }
 
 @media (max-width: 640px) {
-  .section-wide, .section { padding: 40px 16px; }
+  .section-wide, .section { padding: 32px 16px; }
   .category-header { margin-bottom: 28px; }
 
   /* Bottom-sheet modal for mobile */
