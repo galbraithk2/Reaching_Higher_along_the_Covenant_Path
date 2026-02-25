@@ -640,6 +640,26 @@ a, button, .booth-card, .class-card { -webkit-tap-highlight-color: transparent; 
   line-height: 1.65;
 }
 
+/* Float-right image with text wrapping */
+.modal-feature-img-float {
+  float: right;
+  width: 220px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 0 0 12px 16px;
+}
+
+@media (max-width: 480px) {
+  .modal-feature-img-float {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 12px;
+  }
+}
+
 .modal-close {
   position: absolute;
   top: 10px; right: 10px;
@@ -905,7 +925,7 @@ const booths = {
     { title: "Sharing the Gospel on Social Media", who: "Teton Island & Newdale", desc: "Learn simple, natural ways to share your testimony through social media. Get ideas for posts, stories, and comments. Choose one small action for the week — share a verse, invite someone, post an inspirational thought, or leave an encouraging comment." },
     { title: "Sharing the Gospel in the Community", who: "North Fork, South Fork, & Teton Rivers", desc: "Learn practical ways to implement missionary work into everyday life. Discover natural opportunities to share the light of Christ with friends, neighbors, and your community." },
     { title: "Family Missionary Plan", who: "Moody Creek Ward Families", desc: "Families with teenagers and small children share realistic, everyday ways they make missionary work part of family life. Focus on simple ideas that don't require extra time but help children and youth develop a missionary mindset." },
-    { title: "JustServe Booth", who: "Jerry & Rozan Miller", desc: "Participate in a service project, learn about service needs in your community, and sign up for service opportunities through JustServe. Find meaningful ways to serve those around you." }
+    { title: "JustServe Booth", who: "Jerry & Rozan Miller", desc: '<p><strong><a href="https://www.justserve.org" target="_blank" rel="noopener noreferrer">JustServe</a></strong> is a community service platform sponsored by The Church of Jesus Christ of Latter-day Saints that connects volunteers with meaningful service opportunities in their community. At this booth, discover local projects you can join\u200A\u2014\u200Aand participate in one right here:</p><div style="margin-top:16px"><img src="assets/images/bagsoflove.gif" alt="Bags of Love comfort kit items" class="modal-feature-img-float" /><p><strong>\u201CBags of Love\u201D Service Project</strong> \u2014 A \u201CBag of Love\u201D is a comfort kit for children and youth facing a crisis\u200A\u2014\u200Awhether a parent has been hospitalized, arrested, or the family has become homeless. It can also bring hope to a young person who has run away or is struggling emotionally. Each bag is a simple reminder that someone cares and they are not alone.</p></div><p style="margin-top:14px"><strong>How to Participate</strong> \u2014 Purchase items in advance and prepare a bag. Drop it off at your ward building or bring it to the booth on the day of the conference.</p><p style="margin-top:10px">Everything needs to fit in a 2 to 2.5 gallon Ziploc bag.</p><p style="margin-top:14px"><strong>Younger Children:</strong></p><ul style="margin:8px 0 0 18px;line-height:1.7"><li>Soft lap blanket (can be slightly used &amp; clean)</li><li>Stuffed animal (can be slightly used &amp; clean)</li><li>Coloring book and colored pencils (crayons will melt)</li><li>Small boxed puzzle or board puzzle that fits in the bag</li><li>Hairbrush/comb</li><li>Small shampoo</li><li>Individually wrapped toothbrush and toothpaste</li><li>Individually wrapped chapstick</li><li>Individually wrapped snacks\u200A\u2014\u200Acrackers, cookies, fruit snacks, etc.</li></ul><p style="margin-top:14px"><strong>Older Children:</strong></p><ul style="margin:8px 0 0 18px;line-height:1.7"><li>Soft lap blanket (can be slightly used &amp; clean)</li><li>Stuffed animal (can be slightly used &amp; clean)</li><li>Puzzle book, small tablet, pencil or pen</li><li>Reading book (can be slightly used)</li><li>Hairbrush/comb</li><li>Small shampoo</li><li>Individually wrapped toothbrush and toothpaste</li><li>Individually wrapped chapstick</li><li>Individually wrapped snacks\u200A\u2014\u200Acrackers, cookies, fruit snacks, etc.</li></ul><p style="margin-top:14px">Feel free to make bags specific for boys or girls, but please label them as such. <u>Please feel free to add or take away\u200A\u2014\u200Anot all bags need to be the same.</u> Use wisdom in preparing them.</p>' }
   ],
   rising: [
     { title: "Primary Activities Corner", who: "Teton Rivers, Teton Island & Heritage Park Wards", desc: "Bring your little ones to the Primary room for a child-friendly space filled with hands-on crafts and activities centered on temples, prophets, covenants, scripture stories, and missionary work." },
