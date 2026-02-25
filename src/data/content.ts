@@ -102,7 +102,7 @@ export const booths: Record<CategoryKey, Booth[]> = {
     {
       title: "JustServe Booth",
       who: "Jerry & Rozan Miller",
-      desc: "Participate in a service project, learn about service needs in your community, and sign up for service opportunities through JustServe. Find meaningful ways to serve those around you.",
+      desc: '<div class="modal-image-row"><img src="/Reaching_Higher_along_the_Covenant_Path/images/bagsoflove.gif" alt="Bags of Love comfort kit items" class="modal-feature-img" /><p><strong>\u201CBags of Love\u201D Service Project</strong> \u2014 Roll up your sleeves and help assemble comfort kits for children in need, right at the booth! Each Bag of Love includes a coloring book, colored pencils, a stuffed animal, a cozy blanket, snacks, and flash cards\u200A\u2014\u200Asmall items that bring big comfort to a child going through a difficult time.</p></div><p style="margin-top:14px"><strong>Discover Local Needs</strong> \u2014 Browse real service opportunities happening right here in your community through <a href="https://www.justserve.org" target="_blank" rel="noopener noreferrer">JustServe.org</a>. From one-time projects to ongoing volunteer work, find something that fits your schedule and your family.</p><p style="margin-top:10px"><strong>Sign Up on the Spot</strong> \u2014 Don\u2019t just learn about service\u200A\u2014\u200Astart today. Pick a project, sign up, and leave the booth ready to make a difference.</p><p style="margin-top:14px"><em>Whether you have one hour or one Saturday, there\u2019s a place for you to serve.</em></p>',
     },
   ],
   rising: [
