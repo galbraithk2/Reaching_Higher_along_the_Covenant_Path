@@ -722,7 +722,27 @@ h1, h2, h3, h4, h5, h6 {
   object-fit: cover;
 }
 
+.flyer-thumb-pdf-placeholder {
+  width: 100%;
+  aspect-ratio: 8.5 / 11;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface, #f8f9fa);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted, #6b7280);
+}
 
+.flyer-thumb-pdf-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 8px;
+}
 
 /* ═══ DETAIL MODAL ═══ */
 .modal-backdrop {

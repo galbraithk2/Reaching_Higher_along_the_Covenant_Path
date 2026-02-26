@@ -108,6 +108,22 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
         </div>
         <div className="flyer-grid">
           <div className="flyer-thumb-card">
+            <div className="flyer-thumb-pdf-placeholder">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              <span className="flyer-thumb-pdf-label">Foyer QR Flyer</span>
+            </div>
+            <a
+              href={`${BASE_PATH}/pdfs/Covenant_Path_Foyer_QR.pdf`}
+              download="Covenant_Path_Foyer_QR.pdf"
+              className="flyer-btn flyer-btn-outline"
+            >
+              Download PDF
+            </a>
+          </div>
+          <div className="flyer-thumb-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${BASE_PATH}/images/ReachingHigher_Flyer1.png`}
