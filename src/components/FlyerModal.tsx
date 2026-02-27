@@ -137,6 +137,13 @@ export default function FlyerModal({ isOpen, onClose }: Props) {
               Download PDF
             </a>
             <a
+              href={`${BASE_PATH}/pdfs/ReachingHigher_Flyer1_4up.pdf`}
+              download="ReachingHigher_Flyer1_4up.pdf"
+              className="flyer-btn flyer-btn-outline"
+            >
+              Download PDF (4 per page)
+            </a>
+            <a
               href={`${BASE_PATH}/images/ReachingHigher_Flyer1.png`}
               download="ReachingHigher_Flyer1.png"
               className="flyer-btn flyer-btn-outline"
