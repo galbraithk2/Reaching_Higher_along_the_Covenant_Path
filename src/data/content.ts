@@ -197,6 +197,7 @@ export const classes: ClassItem[] = [
   },
   {
     title: "The Teton Dam Disaster",
+    subtitle: "What happened, what was learned, and inspiring stories",
     schedule: "All morning",
     location: "Priesthood Room",
     who: "John Galbraith",
