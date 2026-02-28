@@ -1,7 +1,7 @@
 // ═══ DATA ═══
 // Shared entry — edit once, updates both Self-Reliance booth and Mini Classes card
 const jobSearchData = {
-  title: "Job Search, Résumé & Networking",
+  title: "Job Search, Résumé Tips & Networking",
   who: "John Ekins",
   desc: "Get help with your job search, résumé writing, and professional networking. Whether you're just starting out or looking for a change, come get practical career guidance.",
 };
