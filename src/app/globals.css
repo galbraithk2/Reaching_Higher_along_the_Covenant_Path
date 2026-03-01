@@ -472,7 +472,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .class-card .class-subtitle {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-style: italic;
   line-height: 1.45;
   margin-top: 2px;
