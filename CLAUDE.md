@@ -136,7 +136,7 @@ You may refactor internals only if requested or clearly justified, but the outwa
 - Booths and classes are generated from TypeScript data in `src/data/content.ts`.
 - Prefer editing content in the data objects rather than duplicating JSX.
 - Categories: `temple`, `missionary`, `rising`, `selfreliance` — each with color and label.
-- **Shared data pattern:** `jobSearchData` is a shared object used by both the Self-Reliance booth section and the Mini Classes list. When editing Job Search content, update the shared object so both places stay in sync. The class entry uses `useSharedModal: true` which triggers Self-Reliance color in the modal.
+- The Job Search class entry uses `useSharedModal: true` which triggers Self-Reliance color in the modal instead of the default accent color.
 
 #### 4) Scroll reveal / animations (`ScrollReveal.tsx`)
 - IntersectionObserver adds `.visible` class for reveal animations.
