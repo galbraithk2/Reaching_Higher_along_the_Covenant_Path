@@ -446,6 +446,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
+  display: flex;
+  flex-direction: column;
 }
 
 .class-card:hover, .class-card:active {
@@ -474,6 +476,11 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
   line-height: 1.45;
   margin-top: 2px;
+}
+
+.class-card .learn-more {
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 /* ═══ CTA SECTION ═══ */
