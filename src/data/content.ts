@@ -1,7 +1,7 @@
 // ═══ DATA ═══
 // Shared entry — edit once, updates both Self-Reliance booth and Mini Classes card
 const jobSearchData = {
-  title: "Job Search, Résumé Tips & Networking",
+  title: "Job Search, Résumé Tips & Networking Strategies",
   who: "John Ekins",
   desc: "Get help with your job search, résumé writing, and professional networking. Whether you're just starting out or looking for a change, come get practical career guidance.",
 };
@@ -191,7 +191,7 @@ export const classes: ClassItem[] = [
   {
     title: "Family History Q&A",
     schedule: "All morning",
-    location: "Room TBD",
+    location: "Rooms 6 & 7",
     who: "Michelle Nelson, Jacob Jashinsky, & Larry Lovell",
     desc: "Drop in anytime to ask your family history questions. Get one-on-one guidance and support from experienced family history consultants.",
   },
@@ -206,7 +206,7 @@ export const classes: ClassItem[] = [
   {
     ...jobSearchData,
     schedule: "All morning",
-    location: "Room TBD",
+    location: "Room 2",
     useSharedModal: true,
   },
 ];
