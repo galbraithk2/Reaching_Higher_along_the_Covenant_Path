@@ -37,13 +37,12 @@ export default function ClassCard({ classItem, onOpen }: Props) {
       }}
     >
       <h4 dangerouslySetInnerHTML={{ __html: c.title }} />
-      {c.subtitle ? (
+      {c.subtitle && (
         <div className="class-subtitle">{c.subtitle}</div>
-      ) : (
-        <div className="meta">
-          {c.schedule} · {c.location}
-        </div>
       )}
+      <div className="meta">
+        {c.schedule} · {c.location}
+      </div>
       <div className="learn-more">
         Learn more <span className="arrow">&rarr;</span>
       </div>
