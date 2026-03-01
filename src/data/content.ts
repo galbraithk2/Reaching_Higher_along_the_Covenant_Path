@@ -184,7 +184,7 @@ export const classes: ClassItem[] = [
   {
     title: "Did I Remember Everything?<br><span class=\"title-sub\"><em>Organizing Vital Documents</em></span>",
     schedule: "Every 20 min",
-    location: "Room 8",
+    location: "Room 9",
     who: "Ninette Galbraith",
     desc: "Learn practical strategies to organize your family's vital documents. Get tips on what to keep, how to store it, and how to be prepared for the unexpected.",
   },
