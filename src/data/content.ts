@@ -1,5 +1,5 @@
 // ═══ DATA ═══
-// Shared entry — edit once, updates both Self-Reliance booth and Mini Classes card
+// Reusable content for the Job Search mini class
 const jobSearchData = {
   title: "Job Search, Résumé Tips & Networking Strategies",
   who: "John Ekins",
