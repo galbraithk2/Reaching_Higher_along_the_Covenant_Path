@@ -4,41 +4,41 @@ import { useRouter } from "next/navigation";
 
 /* ── Table positions (% of room width / height) ── */
 
-// Horizontal tables: 3 rows × 4 columns
+// Horizontal tables: Row 1 at top, Rows 2–3 close together in the middle
 const hTables = [
   // Row 1 (top)
-  { id: 1, l: 24, t: 13 },
-  { id: 2, l: 35.5, t: 13 },
-  { id: 3, l: 47, t: 13 },
-  { id: 4, l: 58.5, t: 13 },
-  // Row 2 (middle)
-  { id: 5, l: 24, t: 44 },
-  { id: 6, l: 35.5, t: 44 },
-  { id: 7, l: 47, t: 44 },
-  { id: 8, l: 58.5, t: 44 },
-  // Row 3 (bottom)
-  { id: 9, l: 24, t: 74 },
-  { id: 10, l: 35.5, t: 74 },
-  { id: 11, l: 47, t: 74 },
-  { id: 12, l: 58.5, t: 74 },
+  { id: 1, l: 27, t: 12 },
+  { id: 2, l: 37.5, t: 12 },
+  { id: 3, l: 48, t: 12 },
+  { id: 4, l: 58.5, t: 12 },
+  // Row 2 (upper-middle)
+  { id: 5, l: 27, t: 42 },
+  { id: 6, l: 37.5, t: 42 },
+  { id: 7, l: 48, t: 42 },
+  { id: 8, l: 58.5, t: 42 },
+  // Row 3 (lower-middle, close to Row 2)
+  { id: 9, l: 27, t: 58 },
+  { id: 10, l: 37.5, t: 58 },
+  { id: 11, l: 48, t: 58 },
+  { id: 12, l: 58.5, t: 58 },
 ];
 
 // Right-column vertical tables
 const vTables = [
-  { id: 13, l: 78, t: 10 },
-  { id: 14, l: 78, t: 41 },
-  { id: 15, l: 78, t: 71 },
+  { id: 13, l: 80, t: 9 },
+  { id: 14, l: 80, t: 44 },
+  { id: 15, l: 80, t: 76 },
 ];
 
-// Round (snack / seating) tables – left area
+// Round tables – to the RIGHT of the refreshments counter
 const rounds = [
-  { l: 4, t: 39 },
-  { l: 12, t: 39 },
-  { l: 4, t: 50 },
-  { l: 12, t: 50 },
-  { l: 4, t: 61 },
-  { l: 12, t: 61 },
-  { l: 8, t: 72 },
+  { l: 9, t: 22 },
+  { l: 16, t: 22 },
+  { l: 9, t: 36 },
+  { l: 16, t: 36 },
+  { l: 9, t: 50 },
+  { l: 16, t: 50 },
+  { l: 12, t: 63 },
 ];
 
 export default function HallLayout() {
@@ -54,20 +54,20 @@ export default function HallLayout() {
         >
           &#8592; Back to Event
         </button>
-        <h1>Hall Layout</h1>
+        <h1>Cultural Hall</h1>
         <p className="hall-subtitle">
           Saturday, March 21 &middot; Stake Center
         </p>
       </header>
 
       <div className="hall-container">
-        <div className="hall-room" role="img" aria-label="Floor plan of the stake center hall showing numbered table positions">
-          {/* Refreshments counter – top left */}
+        <div className="hall-room" role="img" aria-label="Floor plan of the cultural hall showing numbered table positions">
+          {/* Refreshments counter – left wall */}
           <div className="hall-refreshments">
             <span>Refreshments</span>
           </div>
 
-          {/* Round tables – left area */}
+          {/* Round tables – to the right of refreshments */}
           {rounds.map((r, i) => (
             <div
               key={`r${i}`}

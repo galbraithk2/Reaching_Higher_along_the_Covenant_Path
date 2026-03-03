@@ -1142,13 +1142,13 @@ footer a:hover { text-decoration: underline; }
   overflow: hidden;
 }
 
-/* Refreshments counter — vertical, top-left */
+/* Refreshments counter — vertical, against the left wall */
 .hall-refreshments {
   position: absolute;
-  left: 2.5%;
-  top: 4%;
+  left: 1.5%;
+  top: 10%;
   width: 4.5%;
-  height: 27%;
+  height: 32%;
   background: var(--bg-subtle);
   border: 1.5px solid var(--border-hover);
   border-radius: 3px;
@@ -1168,7 +1168,7 @@ footer a:hover { text-decoration: underline; }
   white-space: nowrap;
 }
 
-/* Round tables */
+/* Round tables — to the right of refreshments */
 .hall-round {
   position: absolute;
   width: 5.5%;
@@ -1181,7 +1181,7 @@ footer a:hover { text-decoration: underline; }
 /* Side table — bottom-left */
 .hall-side-table {
   position: absolute;
-  left: 2.5%;
+  left: 1.5%;
   top: 82%;
   width: 13%;
   height: 5%;

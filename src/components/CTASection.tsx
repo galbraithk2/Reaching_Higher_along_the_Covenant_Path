@@ -1,15 +1,25 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 type Props = {
   onOpenFlyers: () => void;
 };
 
 export default function CTASection({ onOpenFlyers }: Props) {
+  const router = useRouter();
+
   return (
     <section className="cta-section">
       <div className="cta-inner">
         <p className="cta-date">
-          Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake
+          Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot;{" "}
+          <span
+            onClick={() => router.push("/hall")}
+            style={{ cursor: "default" }}
+          >
+            Stake
+          </span>{" "}
           Center
         </p>
         <p className="cta-message">
