@@ -107,11 +107,6 @@ export const booths: Record<CategoryKey, Booth[]> = {
   ],
   rising: [
     {
-      title: "Primary Activities Corner",
-      who: "Teton Rivers, Teton Island & Heritage Park Wards",
-      desc: "Bring your little ones to the Primary room for a child-friendly space filled with hands-on crafts and activities centered on temples, prophets, covenants, scripture stories, and missionary work.",
-    },
-    {
       title: "Strengthening Gospel Study in the Home",
       who: "Sugar Ward",
       desc: "Discover practical ways to build consistent, meaningful gospel study at home — especially with small children. Share what works, learn new ideas, and take home a simple guide to help your family grow in the gospel.",
