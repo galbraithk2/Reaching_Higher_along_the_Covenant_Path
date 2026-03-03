@@ -114,7 +114,7 @@ const powerOutlets = [
   { l: 93, t: 1.5, label: "Near Table 17" },          // top wall, halfway between T17 and right wall
   { l: 22, t: 95, label: "Near Table 13" },           // bottom wall, directly below T1 plug, just left of T13
   { l: 46.5, t: 95, label: "Between Tables 14–15" }, // bottom wall, centered in gap between T14 & T15
-  { l: 93, t: 95, label: "Near Table 19" },           // bottom wall, aligned below T17 plug
+  { l: 67, t: 95, label: "Near Table 19" },            // bottom wall, straight down from T4 plug, right of T16
 ];
 
 // localStorage key for persistent assignments
