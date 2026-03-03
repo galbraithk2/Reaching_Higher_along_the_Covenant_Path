@@ -1190,14 +1190,14 @@ footer a:hover { text-decoration: underline; }
   border-radius: 3px;
 }
 
-/* Numbered tables — shared */
+/* Numbered tables — shared (slate gray default to avoid clash with missionary green) */
 .hall-table {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--accent);
-  background: var(--accent-soft);
+  border: 2px solid #94A3B8;
+  background: #F1F5F9;
   border-radius: 3px;
 }
 
@@ -1205,7 +1205,7 @@ footer a:hover { text-decoration: underline; }
   font-family: var(--font-heading), 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: clamp(9px, 1.4vw, 16px);
-  color: var(--accent-hover);
+  color: #475569;
 }
 
 /* Horizontal tables (1–16) */
@@ -1257,7 +1257,7 @@ footer a:hover { text-decoration: underline; }
 }
 
 .hall-table:hover {
-  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.25);
+  box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.4);
 }
 
 /* Assigned tables get category colors via inline styles */
@@ -1318,7 +1318,7 @@ footer a:hover { text-decoration: underline; }
 
 @keyframes hall-card-glow {
   0%, 100% { box-shadow: 0 0 0 0 transparent; }
-  50% { box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2); }
+  50% { box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2); }
 }
 
 .hall-booth-card--assigned {
@@ -1367,6 +1367,101 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* Assigned booth card who text color is set via inline styles */
+
+/* ── Power outlet indicators ── */
+.hall-power-outlet {
+  position: absolute;
+  width: 2.2%;
+  aspect-ratio: 1;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.2));
+}
+
+/* ── Password modal ── */
+.hall-pw-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.hall-pw-modal {
+  background: var(--surface, #fff);
+  border-radius: 12px;
+  padding: 24px 28px;
+  min-width: 280px;
+  max-width: 340px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hall-pw-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #1e293b);
+  margin-bottom: 12px;
+}
+
+.hall-pw-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  border: 2px solid var(--border, #d1d5db);
+  border-radius: 8px;
+  outline: none;
+  background: var(--bg, #fff);
+  color: var(--text-primary, #1e293b);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: border-color 0.15s;
+}
+
+.hall-pw-input:focus {
+  border-color: #94A3B8;
+}
+
+.hall-pw-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hall-pw-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.hall-pw-cancel {
+  background: var(--bg-subtle, #f1f5f9);
+  color: var(--text-secondary, #64748b);
+}
+
+.hall-pw-cancel:hover {
+  background: var(--border, #e2e8f0);
+}
+
+.hall-pw-ok {
+  background: #475569;
+  color: #fff;
+}
+
+.hall-pw-ok:hover {
+  background: #334155;
+}
 
 /* Responsive — keep floor plan readable on small screens */
 @media (max-width: 480px) {
