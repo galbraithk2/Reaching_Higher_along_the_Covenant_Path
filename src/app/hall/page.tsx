@@ -35,15 +35,13 @@ const vTables = [
   { id: 19, l: 78, t: 77 },
 ];
 
-// Round tables – to the right of refreshments counter
+// 5 round tables – to the right of refreshments counter
 const rounds = [
-  { l: 8, t: 12 },
-  { l: 14, t: 12 },
-  { l: 8, t: 25 },
-  { l: 14, t: 25 },
-  { l: 8, t: 38 },
-  { l: 14, t: 38 },
-  { l: 11, t: 50 },
+  { l: 8, t: 14 },
+  { l: 14, t: 14 },
+  { l: 8, t: 29 },
+  { l: 14, t: 29 },
+  { l: 11, t: 44 },
 ];
 
 export default function HallLayout() {
@@ -106,9 +104,6 @@ export default function HallLayout() {
             </div>
           ))}
         </div>
-
-        {/* Entry label below the room */}
-        <p className="hall-entry-label">&#8593; Entry</p>
       </div>
     </div>
   );
