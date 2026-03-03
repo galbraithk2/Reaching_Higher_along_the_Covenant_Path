@@ -1,10 +1,21 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function InviteStrip() {
+  const router = useRouter();
+
   return (
     <div className="invite-strip">
       <div className="invite-inner">
         <p className="invite-date">
-          Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake
-          Center
+          Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot;{" "}
+          <span
+            onDoubleClick={() => router.push("/hall")}
+            style={{ cursor: "default" }}
+          >
+            Stake Center
+          </span>
         </p>
         <p className="invite-headline">
           All ages. All stages. All invited!

@@ -1077,3 +1077,161 @@ footer a:hover { text-decoration: underline; }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   select, textarea, input[type="text"] { font-size: 16px; }
 }
+
+/* ═══ HALL LAYOUT PAGE ═══ */
+.hall-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 24px 16px;
+}
+
+.hall-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 28px;
+}
+
+.hall-header h1 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.hall-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.hall-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-bottom: 16px;
+  font-family: var(--font-body), 'Inter', sans-serif;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hall-back-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-hover);
+}
+
+.hall-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hall-room {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  border: 2.5px solid var(--text-primary);
+  border-radius: 4px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+/* Refreshments counter — vertical, top-left */
+.hall-refreshments {
+  position: absolute;
+  left: 2.5%;
+  top: 4%;
+  width: 4.5%;
+  height: 27%;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-hover);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hall-refreshments span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: clamp(7px, 1.1vw, 12px);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Round tables */
+.hall-round {
+  position: absolute;
+  width: 5.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-hover);
+  background: var(--bg-subtle);
+}
+
+/* Side table — bottom-left */
+.hall-side-table {
+  position: absolute;
+  left: 2.5%;
+  top: 82%;
+  width: 13%;
+  height: 5%;
+  border: 1.5px solid var(--border-hover);
+  background: var(--bg-subtle);
+  border-radius: 3px;
+}
+
+/* Numbered tables — shared */
+.hall-table {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 3px;
+}
+
+.hall-table span {
+  font-family: var(--font-heading), 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(9px, 1.4vw, 16px);
+  color: var(--accent-hover);
+}
+
+/* Horizontal tables (1–12) */
+.hall-table-h {
+  width: 9.5%;
+  height: 7%;
+}
+
+/* Vertical tables (13–15) */
+.hall-table-v {
+  width: 5.5%;
+  height: 14%;
+}
+
+/* Entry label below the room */
+.hall-entry-label {
+  text-align: center;
+  margin-top: 10px;
+  font-size: clamp(11px, 1.3vw, 14px);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Responsive — keep floor plan readable on small screens */
+@media (max-width: 480px) {
+  .hall-page { padding: 16px 10px; }
+  .hall-header { margin-bottom: 20px; }
+}
