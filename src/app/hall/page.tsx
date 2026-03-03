@@ -109,12 +109,12 @@ const catColorMap: Record<CategoryKey, {
 
 // Power outlet positions (% of room width/height) — placed along walls
 const powerOutlets = [
-  { l: 22, t: 1.5, label: "Near Table 1" },        // above & left of table 1
-  { l: 67, t: 1.5, label: "Near Table 4" },         // above & right of table 4
-  { l: 93, t: 1.5, label: "Near Table 17" },        // top wall, halfway between T17 and right wall
-  { l: 1.5, t: 82, label: "Near Table 13" },        // against left wall near table 13
-  { l: 42, t: 95, label: "Between Tables 14–15" },  // bottom wall between 14 & 15
-  { l: 93, t: 95, label: "Near Table 19" },          // bottom wall, aligned below T17 plug
+  { l: 22, t: 1.5, label: "Near Table 1" },          // top wall, above & left of table 1
+  { l: 67, t: 1.5, label: "Near Table 4" },           // top wall, above & right of table 4
+  { l: 93, t: 1.5, label: "Near Table 17" },          // top wall, halfway between T17 and right wall
+  { l: 22, t: 95, label: "Near Table 13" },           // bottom wall, directly below T1 plug, just left of T13
+  { l: 46.5, t: 95, label: "Between Tables 14–15" }, // bottom wall, centered in gap between T14 & T15
+  { l: 93, t: 95, label: "Near Table 19" },           // bottom wall, aligned below T17 plug
 ];
 
 // localStorage key for persistent assignments
