@@ -30,20 +30,20 @@ const hTables = [
   { id: 16, l: 60, t: 80 },
 ];
 
-// Right-column vertical tables
+// Right-column vertical tables (shifted slightly right)
 const vTables = [
-  { id: 17, l: 78, t: 5 },
-  { id: 18, l: 78, t: 37 },
-  { id: 19, l: 78, t: 77 },
+  { id: 17, l: 81, t: 5 },
+  { id: 18, l: 81, t: 37 },
+  { id: 19, l: 81, t: 77 },
 ];
 
-// 5 round tables – moved lower, left area
+// 5 round tables – moved lower, left area (shifted right to clear Refreshment banner)
 const rounds = [
-  { l: 7, t: 25 },
-  { l: 14, t: 25 },
-  { l: 5, t: 38 },
-  { l: 12, t: 38 },
-  { l: 9, t: 51 },
+  { l: 9, t: 25 },
+  { l: 16, t: 25 },
+  { l: 7, t: 38 },
+  { l: 14, t: 38 },
+  { l: 11, t: 51 },
 ];
 
 // Flatten all booths into a list with category info
@@ -107,6 +107,16 @@ const catColorMap: Record<CategoryKey, {
   },
 };
 
+// Power outlet positions (% of room width/height) — placed along walls
+const powerOutlets = [
+  { l: 22, t: 1.5, label: "Near Table 1" },       // above & left of table 1
+  { l: 67, t: 1.5, label: "Near Table 4" },        // above & right of table 4
+  { l: 84, t: 1.5, label: "Near Table 17" },       // right & above table 17
+  { l: 22, t: 82, label: "Near Table 13" },        // left & against wall of table 13
+  { l: 42, t: 95, label: "Between Tables 14–15" }, // bottom wall between 14 & 15
+  { l: 84, t: 82, label: "Near Table 19" },        // right of table 19 against wall
+];
+
 // localStorage key for persistent assignments
 const STORAGE_KEY = "hall-assignments";
 
@@ -118,6 +128,10 @@ export default function HallLayout() {
   const [tableToBoothMap, setTableToBoothMap] = useState<Map<number, number>>(new Map());
   // Currently selected table awaiting a booth click
   const [activeTable, setActiveTable] = useState<number | null>(null);
+
+  // Password modal state
+  const [showPwModal, setShowPwModal] = useState(false);
+  const [pwValue, setPwValue] = useState("");
 
   // Derived: booth → table reverse lookup
   const boothToTableMap = useMemo(
@@ -190,13 +204,19 @@ export default function HallLayout() {
 
   // Secret reset: double-click the word "Stake"
   const handleStakeDoubleClick = useCallback(() => {
-    const pw = window.prompt("Enter password:");
-    if (pw === "fun") {
+    setPwValue("");
+    setShowPwModal(true);
+  }, []);
+
+  const handlePwSubmit = useCallback(() => {
+    if (pwValue === "fun") {
       setTableToBoothMap(new Map());
       setActiveTable(null);
       localStorage.removeItem(STORAGE_KEY);
     }
-  }, []);
+    setShowPwModal(false);
+    setPwValue("");
+  }, [pwValue]);
 
   /* ── Helpers ── */
 
@@ -306,8 +326,45 @@ export default function HallLayout() {
 
           {/* Right column vertical tables (17–19) */}
           {vTables.map((t) => renderTable(t, "v"))}
+
+          {/* Power outlet indicators */}
+          {powerOutlets.map((p, i) => (
+            <div
+              key={`pwr${i}`}
+              className="hall-power-outlet"
+              style={{ left: `${p.l}%`, top: `${p.t}%` }}
+              title={p.label}
+              aria-label={`Power outlet: ${p.label}`}
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" width="100%" height="100%">
+                <path d="M7 2v4H5v3a5 5 0 004 4.9V17H7v2h6v-2h-2v-3.1A5 5 0 0015 9V6h-2V2h-2v4h-2V2H7z" />
+              </svg>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Password modal */}
+      {showPwModal && (
+        <div className="hall-pw-backdrop" onClick={() => { setShowPwModal(false); setPwValue(""); }}>
+          <div className="hall-pw-modal" onClick={(e) => e.stopPropagation()}>
+            <p className="hall-pw-label">Enter password:</p>
+            <input
+              type="password"
+              className="hall-pw-input"
+              value={pwValue}
+              onChange={(e) => setPwValue(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") handlePwSubmit(); if (e.key === "Escape") { setShowPwModal(false); setPwValue(""); } }}
+              autoFocus
+              autoComplete="off"
+            />
+            <div className="hall-pw-actions">
+              <button className="hall-pw-btn hall-pw-cancel" onClick={() => { setShowPwModal(false); setPwValue(""); }}>Cancel</button>
+              <button className="hall-pw-btn hall-pw-ok" onClick={handlePwSubmit}>OK</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Booth cards */}
       <section className="hall-booths-section">
