@@ -1,13 +1,29 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRef, useCallback } from "react";
+import { BASE_PATH } from "@/lib/basePath";
 
 type Props = {
   onOpenFlyers: () => void;
 };
 
 export default function CTASection({ onOpenFlyers }: Props) {
-  const router = useRouter();
+  const tapRef = useRef<number>(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleTap = useCallback(() => {
+    tapRef.current += 1;
+    if (tapRef.current >= 2) {
+      tapRef.current = 0;
+      if (timerRef.current) clearTimeout(timerRef.current);
+      window.location.href = `${BASE_PATH}/hall`;
+      return;
+    }
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      tapRef.current = 0;
+    }, 600);
+  }, []);
 
   return (
     <section className="cta-section">
@@ -15,8 +31,14 @@ export default function CTASection({ onOpenFlyers }: Props) {
         <p className="cta-date">
           Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot;{" "}
           <span
-            onClick={() => router.push("/hall")}
-            style={{ cursor: "default" }}
+            onClick={handleTap}
+            role="text"
+            style={{
+              cursor: "default",
+              WebkitUserSelect: "none",
+              userSelect: "none",
+              touchAction: "manipulation",
+            }}
           >
             Stake
           </span>{" "}
