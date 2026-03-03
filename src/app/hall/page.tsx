@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { booths, catLabels, type CategoryKey } from "@/data/content";
 
@@ -55,11 +55,11 @@ type BoothEntry = {
 };
 
 const allBooths: BoothEntry[] = [];
-let boothId = 1;
+let _boothId = 1;
 for (const cat of ["temple", "missionary", "rising", "selfreliance"] as CategoryKey[]) {
   for (const b of booths[cat]) {
     allBooths.push({
-      id: boothId++,
+      id: _boothId++,
       title: b.title.replace(/<[^>]*>/g, ""), // strip HTML tags for display
       who: b.who,
       category: cat,
@@ -67,120 +67,192 @@ for (const cat of ["temple", "missionary", "rising", "selfreliance"] as Category
   }
 }
 
-const allTables = [...hTables, ...vTables];
+// Booth lookup by ID
+const boothById = new Map(allBooths.map((b) => [b.id, b]));
 
-// Category color map for inline styles
-const catColorMap: Record<CategoryKey, { bg: string; border: string; text: string }> = {
-  temple: { bg: "#EEF2FF", border: "#6366F1", text: "#6366F1" },
-  missionary: { bg: "#ECFDF5", border: "#059669", text: "#059669" },
-  rising: { bg: "#FFFBEB", border: "#F59E0B", text: "#92400E" },
-  selfreliance: { bg: "#FFF1F2", border: "#E11D48", text: "#E11D48" },
+// Category color map — unassigned, assigned (card), and table variants
+const catColorMap: Record<CategoryKey, {
+  bg: string; border: string; text: string;
+  assignedBg: string; assignedBorder: string; assignedText: string;
+  tableBg: string; tableBorder: string; tableText: string;
+  badgeBg: string; tableNumBg: string; tableNumText: string;
+}> = {
+  temple: {
+    bg: "#EEF2FF", border: "#6366F1", text: "#6366F1",
+    assignedBg: "#C7D2FE", assignedBorder: "#4338CA", assignedText: "#312E81",
+    tableBg: "#DDD6FE", tableBorder: "#6366F1", tableText: "#3730A3",
+    badgeBg: "#4338CA",
+    tableNumBg: "#E0E7FF", tableNumText: "#3730A3",
+  },
+  missionary: {
+    bg: "#ECFDF5", border: "#059669", text: "#059669",
+    assignedBg: "#A7F3D0", assignedBorder: "#047857", assignedText: "#064E3B",
+    tableBg: "#D1FAE5", tableBorder: "#059669", tableText: "#065F46",
+    badgeBg: "#047857",
+    tableNumBg: "#ECFDF5", tableNumText: "#065F46",
+  },
+  rising: {
+    bg: "#FFFBEB", border: "#F59E0B", text: "#92400E",
+    assignedBg: "#FDE68A", assignedBorder: "#B45309", assignedText: "#78350F",
+    tableBg: "#FEF3C7", tableBorder: "#D97706", tableText: "#92400E",
+    badgeBg: "#B45309",
+    tableNumBg: "#FEF3C7", tableNumText: "#92400E",
+  },
+  selfreliance: {
+    bg: "#FFF1F2", border: "#E11D48", text: "#E11D48",
+    assignedBg: "#FECDD3", assignedBorder: "#BE123C", assignedText: "#881337",
+    tableBg: "#FFE4E6", tableBorder: "#E11D48", tableText: "#9F1239",
+    badgeBg: "#BE123C",
+    tableNumBg: "#FFE4E6", tableNumText: "#9F1239",
+  },
 };
+
+// localStorage key for persistent assignments
+const STORAGE_KEY = "hall-assignments";
 
 export default function HallLayout() {
   const router = useRouter();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Track which table IDs are "taken" (clicked)
-  const [takenTables, setTakenTables] = useState<Set<number>>(new Set());
-  // Track which booth IDs are "assigned" (clicked)
-  const [assignedBooths, setAssignedBooths] = useState<Set<number>>(new Set());
-  // Track table→booth and booth→table mappings
+  // Source of truth: table → booth mapping (persisted to localStorage)
   const [tableToBoothMap, setTableToBoothMap] = useState<Map<number, number>>(new Map());
-  const [boothToTableMap, setBoothToTableMap] = useState<Map<number, number>>(new Map());
-  // Currently selected (active) table awaiting a booth click
+  // Currently selected table awaiting a booth click
   const [activeTable, setActiveTable] = useState<number | null>(null);
 
+  // Derived: booth → table reverse lookup
+  const boothToTableMap = useMemo(
+    () => new Map(Array.from(tableToBoothMap.entries()).map(([t, b]) => [b, t])),
+    [tableToBoothMap],
+  );
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const entries: [number, number][] = JSON.parse(saved);
+        setTableToBoothMap(new Map(entries));
+      }
+    } catch { /* ignore corrupt data */ }
+    setIsLoaded(true);
+  }, []);
+
+  // Persist whenever assignments change
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(Array.from(tableToBoothMap.entries())),
+      );
+    }
+  }, [tableToBoothMap, isLoaded]);
+
+  /* ── Handlers ── */
+
   const handleTableClick = useCallback((tableId: number) => {
-    // If this table is already taken, deselect it
-    if (takenTables.has(tableId)) {
-      setTakenTables((prev) => {
-        const next = new Set(prev);
+    // Already assigned → un-assign
+    if (tableToBoothMap.has(tableId)) {
+      setTableToBoothMap((prev) => {
+        const next = new Map(prev);
         next.delete(tableId);
         return next;
       });
-      // Find and unassign the booth linked to this table
-      const linkedBooth = tableToBoothMap.get(tableId);
-      if (linkedBooth !== undefined) {
-        setAssignedBooths((prev) => {
-          const next = new Set(prev);
-          next.delete(linkedBooth);
-          return next;
-        });
-        setBoothToTableMap((prev) => {
-          const next = new Map(prev);
-          next.delete(linkedBooth);
-          return next;
-        });
-        setTableToBoothMap((prev) => {
-          const next = new Map(prev);
-          next.delete(tableId);
-          return next;
-        });
-      }
-      // If this was the active selection, clear it
-      if (activeTable === tableId) {
-        setActiveTable(null);
-      }
+      if (activeTable === tableId) setActiveTable(null);
       return;
     }
-
-    // Select this table as active (waiting for booth click)
+    // Already active → deselect
+    if (activeTable === tableId) {
+      setActiveTable(null);
+      return;
+    }
+    // Select this table
     setActiveTable(tableId);
-    setTakenTables((prev) => new Set(prev).add(tableId));
-  }, [takenTables, tableToBoothMap, activeTable]);
+  }, [tableToBoothMap, activeTable]);
 
-  const handleBoothClick = useCallback((boothId: number) => {
-    // If booth is already assigned, deselect it
-    if (assignedBooths.has(boothId)) {
-      const linkedTable = boothToTableMap.get(boothId);
-      setAssignedBooths((prev) => {
-        const next = new Set(prev);
-        next.delete(boothId);
-        return next;
-      });
-      if (linkedTable !== undefined) {
-        setTakenTables((prev) => {
-          const next = new Set(prev);
-          next.delete(linkedTable);
-          return next;
-        });
-        setTableToBoothMap((prev) => {
-          const next = new Map(prev);
-          next.delete(linkedTable);
-          return next;
-        });
-      }
-      setBoothToTableMap((prev) => {
+  const handleBoothClick = useCallback((bid: number) => {
+    // Already assigned → un-assign
+    const linkedTable = boothToTableMap.get(bid);
+    if (linkedTable !== undefined) {
+      setTableToBoothMap((prev) => {
         const next = new Map(prev);
-        next.delete(boothId);
+        next.delete(linkedTable);
         return next;
       });
-      if (activeTable === linkedTable) {
-        setActiveTable(null);
-      }
+      if (activeTable === linkedTable) setActiveTable(null);
       return;
     }
-
-    // If no table is actively selected, do nothing
+    // No table selected → ignore
     if (activeTable === null) return;
-
-    // Assign this booth to the active table
-    setAssignedBooths((prev) => new Set(prev).add(boothId));
-    setTableToBoothMap((prev) => new Map(prev).set(activeTable, boothId));
-    setBoothToTableMap((prev) => new Map(prev).set(boothId, activeTable));
+    // Assign booth to the active table
+    setTableToBoothMap((prev) => new Map(prev).set(activeTable, bid));
     setActiveTable(null);
-  }, [assignedBooths, boothToTableMap, activeTable]);
+  }, [boothToTableMap, activeTable]);
 
-  const handleReset = useCallback(() => {
-    setTakenTables(new Set());
-    setAssignedBooths(new Set());
-    setTableToBoothMap(new Map());
-    setBoothToTableMap(new Map());
-    setActiveTable(null);
+  // Secret reset: double-click the word "Stake"
+  const handleStakeDoubleClick = useCallback(() => {
+    const pw = window.prompt("Enter password:");
+    if (pw === "fun") {
+      setTableToBoothMap(new Map());
+      setActiveTable(null);
+      localStorage.removeItem(STORAGE_KEY);
+    }
   }, []);
 
-  const assignedCount = assignedBooths.size;
+  /* ── Helpers ── */
+
+  const getCategoryForTable = (tableId: number): CategoryKey | null => {
+    const bid = tableToBoothMap.get(tableId);
+    if (bid === undefined) return null;
+    return boothById.get(bid)?.category ?? null;
+  };
+
+  const getTableStyle = (tableId: number, l: number, t: number): React.CSSProperties => {
+    const isAssigned = tableToBoothMap.has(tableId);
+    const isActive = activeTable === tableId && !isAssigned;
+    const cat = getCategoryForTable(tableId);
+    const colors = cat ? catColorMap[cat] : null;
+
+    const style: React.CSSProperties = { left: `${l}%`, top: `${t}%`, cursor: "pointer" };
+
+    if (isAssigned && colors) {
+      style.background = colors.tableBg;
+      style.borderColor = colors.tableBorder;
+    } else if (isActive) {
+      style.background = "#e0f2fe";
+      style.borderColor = "#0284c7";
+    }
+
+    return style;
+  };
+
+  const assignedCount = tableToBoothMap.size;
   const totalBooths = allBooths.length;
+
+  /* ── Render ── */
+
+  // Render a table element (shared between hTables and vTables)
+  const renderTable = (t: { id: number; l: number; t: number }, orientation: "h" | "v") => {
+    const isAssigned = tableToBoothMap.has(t.id);
+    const isActive = activeTable === t.id && !isAssigned;
+    const cat = getCategoryForTable(t.id);
+
+    return (
+      <div
+        key={t.id}
+        className={`hall-table hall-table-${orientation}${isAssigned ? " hall-table--assigned" : ""}${isActive ? " hall-table--active" : ""}`}
+        style={getTableStyle(t.id, t.l, t.t)}
+        onClick={() => handleTableClick(t.id)}
+        role="button"
+        tabIndex={0}
+        aria-label={`Table ${t.id}${isAssigned ? " (assigned)" : ""}`}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleTableClick(t.id); }}
+      >
+        <span style={isAssigned && cat ? { color: catColorMap[cat].tableText } : undefined}>
+          {t.id}
+        </span>
+      </div>
+    );
+  };
 
   return (
     <div className="hall-page">
@@ -194,7 +266,11 @@ export default function HallLayout() {
         </button>
         <h1>Cultural Hall</h1>
         <p className="hall-subtitle">
-          Saturday, March 21 &middot; Stake Center
+          Saturday, March 21 &middot;{" "}
+          <span onDoubleClick={handleStakeDoubleClick} style={{ cursor: "text" }}>
+            Stake
+          </span>{" "}
+          Center
         </p>
         <p className="hall-instructions">
           {activeTable !== null
@@ -203,17 +279,12 @@ export default function HallLayout() {
         </p>
         <div className="hall-progress">
           {assignedCount} of {totalBooths} booths assigned
-          {assignedCount > 0 && (
-            <button onClick={handleReset} className="hall-reset-btn">
-              Reset All
-            </button>
-          )}
         </div>
       </header>
 
       <div className="hall-container">
         <div className="hall-room" role="img" aria-label="Floor plan of the cultural hall showing numbered table positions">
-          {/* Refreshments counter – left wall, centered beside round tables */}
+          {/* Refreshments counter */}
           <div className="hall-refreshments">
             <span>Refreshments</span>
           </div>
@@ -227,66 +298,32 @@ export default function HallLayout() {
             />
           ))}
 
-          {/* Side table – bottom left */}
+          {/* Side table */}
           <div className="hall-side-table" />
 
           {/* Horizontal tables (1–16) */}
-          {hTables.map((t) => {
-            const isTaken = takenTables.has(t.id);
-            const isActive = activeTable === t.id;
-            return (
-              <div
-                key={t.id}
-                className={`hall-table hall-table-h${isTaken ? " hall-table--taken" : ""}${isActive ? " hall-table--active" : ""}`}
-                style={{ left: `${t.l}%`, top: `${t.t}%`, cursor: "pointer" }}
-                onClick={() => handleTableClick(t.id)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Table ${t.id}${isTaken ? " (taken)" : ""}`}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleTableClick(t.id); }}
-              >
-                <span>{t.id}</span>
-              </div>
-            );
-          })}
+          {hTables.map((t) => renderTable(t, "h"))}
 
           {/* Right column vertical tables (17–19) */}
-          {vTables.map((t) => {
-            const isTaken = takenTables.has(t.id);
-            const isActive = activeTable === t.id;
-            return (
-              <div
-                key={t.id}
-                className={`hall-table hall-table-v${isTaken ? " hall-table--taken" : ""}${isActive ? " hall-table--active" : ""}`}
-                style={{ left: `${t.l}%`, top: `${t.t}%`, cursor: "pointer" }}
-                onClick={() => handleTableClick(t.id)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Table ${t.id}${isTaken ? " (taken)" : ""}`}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleTableClick(t.id); }}
-              >
-                <span>{t.id}</span>
-              </div>
-            );
-          })}
+          {vTables.map((t) => renderTable(t, "v"))}
         </div>
       </div>
 
-      {/* Booth cards outside the hall */}
+      {/* Booth cards */}
       <section className="hall-booths-section">
         <h2 className="hall-booths-title">Booths</h2>
         <div className="hall-booths-grid">
           {allBooths.map((booth) => {
             const colors = catColorMap[booth.category];
-            const isAssigned = assignedBooths.has(booth.id);
+            const isAssigned = boothToTableMap.has(booth.id);
             const tableNum = boothToTableMap.get(booth.id);
             return (
               <div
                 key={booth.id}
                 className={`hall-booth-card${isAssigned ? " hall-booth-card--assigned" : ""}${activeTable !== null && !isAssigned ? " hall-booth-card--selectable" : ""}`}
                 style={{
-                  borderColor: isAssigned ? "#b91c1c" : colors.border,
-                  background: isAssigned ? "#fde2e2" : colors.bg,
+                  borderColor: isAssigned ? colors.assignedBorder : colors.border,
+                  background: isAssigned ? colors.assignedBg : colors.bg,
                 }}
                 onClick={() => handleBoothClick(booth.id)}
                 role="button"
@@ -297,25 +334,31 @@ export default function HallLayout() {
                 <div className="hall-booth-card-top">
                   <span
                     className="hall-booth-card-cat"
-                    style={{
-                      background: isAssigned ? "#b91c1c" : colors.border,
-                    }}
+                    style={{ background: isAssigned ? colors.badgeBg : colors.border }}
                   >
                     {catLabels[booth.category]}
                   </span>
                   {isAssigned && tableNum !== undefined && (
-                    <span className="hall-booth-card-table-num">
+                    <span
+                      className="hall-booth-card-table-num"
+                      style={{ background: colors.tableNumBg, color: colors.tableNumText }}
+                    >
                       Table {tableNum}
                     </span>
                   )}
                 </div>
                 <h3
                   className="hall-booth-card-title"
-                  style={{ color: isAssigned ? "#991b1b" : colors.text }}
+                  style={{ color: isAssigned ? colors.assignedText : colors.text }}
                 >
                   {booth.title}
                 </h3>
-                <p className="hall-booth-card-who">{booth.who}</p>
+                <p
+                  className="hall-booth-card-who"
+                  style={isAssigned ? { color: colors.assignedText } : undefined}
+                >
+                  {booth.who}
+                </p>
               </div>
             );
           })}
