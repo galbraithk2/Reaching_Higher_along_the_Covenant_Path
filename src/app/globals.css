@@ -1135,20 +1135,20 @@ footer a:hover { text-decoration: underline; }
 .hall-room {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 3 / 2;
   border: 2.5px solid var(--text-primary);
   border-radius: 4px;
   background: var(--surface);
   overflow: hidden;
 }
 
-/* Refreshments counter — vertical, top-left */
+/* Refreshments counter — vertical, against the left wall */
 .hall-refreshments {
   position: absolute;
-  left: 2.5%;
-  top: 4%;
-  width: 4.5%;
-  height: 27%;
+  left: 1.5%;
+  top: 5%;
+  width: 3.5%;
+  height: 26%;
   background: var(--bg-subtle);
   border: 1.5px solid var(--border-hover);
   border-radius: 3px;
@@ -1168,10 +1168,10 @@ footer a:hover { text-decoration: underline; }
   white-space: nowrap;
 }
 
-/* Round tables */
+/* Round tables — to the right of refreshments */
 .hall-round {
   position: absolute;
-  width: 5.5%;
+  width: 5%;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1.5px solid var(--border-hover);
@@ -1181,10 +1181,10 @@ footer a:hover { text-decoration: underline; }
 /* Side table — bottom-left */
 .hall-side-table {
   position: absolute;
-  left: 2.5%;
+  left: 2%;
   top: 82%;
-  width: 13%;
-  height: 5%;
+  width: 12%;
+  height: 4.5%;
   border: 1.5px solid var(--border-hover);
   background: var(--bg-subtle);
   border-radius: 3px;
@@ -1208,16 +1208,16 @@ footer a:hover { text-decoration: underline; }
   color: var(--accent-hover);
 }
 
-/* Horizontal tables (1–12) */
+/* Horizontal tables (1–16) */
 .hall-table-h {
-  width: 9.5%;
-  height: 7%;
+  width: 9%;
+  height: 5.5%;
 }
 
-/* Vertical tables (13–15) */
+/* Vertical tables (17–19) */
 .hall-table-v {
-  width: 5.5%;
-  height: 14%;
+  width: 5%;
+  height: 13%;
 }
 
 /* Entry label below the room */
