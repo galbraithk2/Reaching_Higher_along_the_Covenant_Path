@@ -29,20 +29,13 @@ const hTables = [
 ];
 
 // Right-column vertical tables
-const vTablesRight = [
+const vTables = [
   { id: 13, l: 80, t: 7 },
   { id: 14, l: 80, t: 39 },
   { id: 15, l: 80, t: 78 },
 ];
 
-// Left-column vertical tables
-const vTablesLeft = [
-  { id: 20, l: 22, t: 7 },
-  { id: 21, l: 22, t: 39 },
-  { id: 22, l: 22, t: 78 },
-];
-
-// Round tables – between refreshments and left column
+// Round tables – to the right of refreshments
 const rounds = [
   { l: 8, t: 18 },
   { l: 14, t: 18 },
@@ -102,19 +95,8 @@ export default function HallLayout() {
             </div>
           ))}
 
-          {/* Left column vertical tables (20–22) */}
-          {vTablesLeft.map((t) => (
-            <div
-              key={t.id}
-              className="hall-table hall-table-v"
-              style={{ left: `${t.l}%`, top: `${t.t}%` }}
-            >
-              <span>{t.id}</span>
-            </div>
-          ))}
-
           {/* Right column vertical tables (13–15) */}
-          {vTablesRight.map((t) => (
+          {vTables.map((t) => (
             <div
               key={t.id}
               className="hall-table hall-table-v"
