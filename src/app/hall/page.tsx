@@ -35,13 +35,13 @@ const vTables = [
   { id: 19, l: 78, t: 77 },
 ];
 
-// 5 round tables – to the right of refreshments counter
+// 5 round tables – angled cluster, upper-left area
 const rounds = [
-  { l: 8, t: 14 },
-  { l: 14, t: 14 },
-  { l: 8, t: 29 },
-  { l: 14, t: 29 },
-  { l: 11, t: 44 },
+  { l: 7, t: 5 },
+  { l: 14, t: 5 },
+  { l: 5, t: 16 },
+  { l: 12, t: 16 },
+  { l: 9, t: 27 },
 ];
 
 export default function HallLayout() {
