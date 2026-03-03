@@ -30,11 +30,11 @@ const hTables = [
   { id: 16, l: 60, t: 80 },
 ];
 
-// Right-column vertical tables (shifted slightly right)
+// Right-column vertical tables (closer together)
 const vTables = [
   { id: 17, l: 81, t: 5 },
-  { id: 18, l: 81, t: 37 },
-  { id: 19, l: 81, t: 77 },
+  { id: 18, l: 81, t: 35 },
+  { id: 19, l: 81, t: 65 },
 ];
 
 // 5 round tables – moved lower, left area (shifted right to clear Refreshment banner)
@@ -109,12 +109,12 @@ const catColorMap: Record<CategoryKey, {
 
 // Power outlet positions (% of room width/height) — placed along walls
 const powerOutlets = [
-  { l: 22, t: 1.5, label: "Near Table 1" },       // above & left of table 1
-  { l: 67, t: 1.5, label: "Near Table 4" },        // above & right of table 4
-  { l: 84, t: 1.5, label: "Near Table 17" },       // right & above table 17
-  { l: 22, t: 82, label: "Near Table 13" },        // left & against wall of table 13
-  { l: 42, t: 95, label: "Between Tables 14–15" }, // bottom wall between 14 & 15
-  { l: 84, t: 82, label: "Near Table 19" },        // right of table 19 against wall
+  { l: 22, t: 1.5, label: "Near Table 1" },        // above & left of table 1
+  { l: 67, t: 1.5, label: "Near Table 4" },         // above & right of table 4
+  { l: 93, t: 1.5, label: "Near Table 17" },        // top wall, halfway between T17 and right wall
+  { l: 1.5, t: 82, label: "Near Table 13" },        // against left wall near table 13
+  { l: 42, t: 95, label: "Between Tables 14–15" },  // bottom wall between 14 & 15
+  { l: 93, t: 95, label: "Near Table 19" },          // bottom wall, aligned below T17 plug
 ];
 
 // localStorage key for persistent assignments
