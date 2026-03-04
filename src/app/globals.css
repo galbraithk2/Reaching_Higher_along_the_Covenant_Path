@@ -1249,7 +1249,7 @@ footer a:hover { text-decoration: underline; }
   color: var(--text-muted);
 }
 
-/* Share Layout button */
+/* Save / Load Layout toggle button */
 .hall-share-btn {
   display: inline-flex;
   align-items: center;
@@ -1271,6 +1271,114 @@ footer a:hover { text-decoration: underline; }
 
 .hall-share-btn:hover {
   background: #334155;
+}
+
+/* Save / Load panel */
+.hall-saveload-panel {
+  margin-top: 12px;
+  padding: 16px;
+  background: var(--bg-subtle, #f8fafc);
+  border: 1.5px solid var(--border, #e2e8f0);
+  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hall-saveload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hall-saveload-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary, #1e293b);
+}
+
+.hall-saveload-code-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.hall-saveload-code {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  background: var(--surface, #fff);
+  border: 1.5px solid var(--border, #d1d5db);
+  border-radius: 6px;
+  color: var(--text-primary, #1e293b);
+  word-break: break-all;
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.hall-saveload-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  border: 1.5px solid var(--border, #d1d5db);
+  border-radius: 6px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #1e293b);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.hall-saveload-input:focus {
+  border-color: #94A3B8;
+}
+
+.hall-saveload-copy,
+.hall-saveload-load {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-body), 'Inter', sans-serif;
+  transition: background 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hall-saveload-copy {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.hall-saveload-copy:hover {
+  background: #cbd5e1;
+}
+
+.hall-saveload-load {
+  background: #475569;
+  color: #fff;
+}
+
+.hall-saveload-load:hover {
+  background: #334155;
+}
+
+.hall-saveload-hint {
+  font-size: 12px;
+  color: var(--text-muted, #64748b);
+}
+
+.hall-saveload-error {
+  font-size: 12px;
+  color: #dc2626;
+  font-weight: 600;
 }
 
 /* Reset is triggered via secret double-click on "Stake" — no visible button */
