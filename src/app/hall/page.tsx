@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { booths, catLabels, type CategoryKey } from "@/data/content";
 
@@ -120,6 +120,27 @@ const powerOutlets = [
 // localStorage key for persistent assignments
 const STORAGE_KEY = "hall-assignments";
 
+// Encode assignments as compact URL param: "1-5,2-3,4-12" (tableId-boothId pairs)
+function encodeAssignments(map: Map<number, number>): string {
+  return Array.from(map.entries())
+    .map(([t, b]) => `${t}-${b}`)
+    .join(",");
+}
+
+function decodeAssignments(param: string): Map<number, number> {
+  const map = new Map<number, number>();
+  if (!param) return map;
+  for (const pair of param.split(",")) {
+    const [tStr, bStr] = pair.split("-");
+    const t = Number(tStr);
+    const b = Number(bStr);
+    if (Number.isFinite(t) && Number.isFinite(b) && t > 0 && b > 0) {
+      map.set(t, b);
+    }
+  }
+  return map;
+}
+
 export default function HallLayout() {
   const router = useRouter();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -133,15 +154,42 @@ export default function HallLayout() {
   const [showPwModal, setShowPwModal] = useState(false);
   const [pwValue, setPwValue] = useState("");
 
+  // Save/Load panel state
+  const [showSaveLoad, setShowSaveLoad] = useState(false);
+  const [loadCode, setLoadCode] = useState("");
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
+  const [loadError, setLoadError] = useState("");
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Derived: booth → table reverse lookup
   const boothToTableMap = useMemo(
     () => new Map(Array.from(tableToBoothMap.entries()).map(([t, b]) => [b, t])),
     [tableToBoothMap],
   );
 
-  // Load from localStorage on mount
+  // Load from URL params first, then localStorage as fallback
   useEffect(() => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      const urlAssignments = params.get("a");
+      if (urlAssignments) {
+        const map = decodeAssignments(urlAssignments);
+        if (map.size > 0) {
+          setTableToBoothMap(map);
+          // Also save URL assignments to localStorage so they persist
+          try {
+            localStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify(Array.from(map.entries())),
+            );
+          } catch { /* storage unavailable */ }
+          setIsLoaded(true);
+          // Clean the URL param so bookmarking works normally after
+          window.history.replaceState({}, "", window.location.pathname);
+          return;
+        }
+      }
+      // No URL data — load from localStorage
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const entries: [number, number][] = JSON.parse(saved);
@@ -154,10 +202,12 @@ export default function HallLayout() {
   // Persist whenever assignments change
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(Array.from(tableToBoothMap.entries())),
-      );
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(Array.from(tableToBoothMap.entries())),
+        );
+      } catch { /* storage unavailable (e.g. iOS private browsing) */ }
     }
   }, [tableToBoothMap, isLoaded]);
 
@@ -217,6 +267,43 @@ export default function HallLayout() {
     setShowPwModal(false);
     setPwValue("");
   }, [pwValue]);
+
+  // Copy the save code to clipboard
+  const handleCopyCode = useCallback(async () => {
+    const code = encodeAssignments(tableToBoothMap);
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopyStatus("copied");
+    } catch {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = code;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        setCopyStatus("copied");
+      } catch {
+        setCopyStatus("failed");
+      }
+    }
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopyStatus("idle"), 2500);
+  }, [tableToBoothMap]);
+
+  // Load assignments from a pasted code
+  const handleLoadCode = useCallback(() => {
+    setLoadError("");
+    const trimmed = loadCode.trim();
+    if (!trimmed) { setLoadError("Paste a code first"); return; }
+    const map = decodeAssignments(trimmed);
+    if (map.size === 0) { setLoadError("Invalid code — try again"); return; }
+    setTableToBoothMap(map);
+    setLoadCode("");
+    setShowSaveLoad(false);
+  }, [loadCode]);
 
   /* ── Helpers ── */
 
@@ -300,6 +387,47 @@ export default function HallLayout() {
         <div className="hall-progress">
           {assignedCount} of {totalBooths} booths assigned
         </div>
+        <button
+          className="hall-share-btn"
+          onClick={() => { setShowSaveLoad((v) => !v); setLoadError(""); setCopyStatus("idle"); }}
+        >
+          {showSaveLoad ? "Close" : "Save / Load Layout"}
+        </button>
+
+        {showSaveLoad && (
+          <div className="hall-saveload-panel">
+            {/* Save section */}
+            {assignedCount > 0 && (
+              <div className="hall-saveload-section">
+                <p className="hall-saveload-label">Your save code:</p>
+                <div className="hall-saveload-code-row">
+                  <code className="hall-saveload-code">{encodeAssignments(tableToBoothMap)}</code>
+                  <button className="hall-saveload-copy" onClick={handleCopyCode}>
+                    {copyStatus === "copied" ? "Copied!" : copyStatus === "failed" ? "Failed" : "Copy"}
+                  </button>
+                </div>
+                <p className="hall-saveload-hint">Copy this code and paste it on your other device.</p>
+              </div>
+            )}
+
+            {/* Load section */}
+            <div className="hall-saveload-section">
+              <p className="hall-saveload-label">Load from a code:</p>
+              <div className="hall-saveload-code-row">
+                <input
+                  className="hall-saveload-input"
+                  type="text"
+                  placeholder="Paste code here"
+                  value={loadCode}
+                  onChange={(e) => { setLoadCode(e.target.value); setLoadError(""); }}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleLoadCode(); }}
+                />
+                <button className="hall-saveload-load" onClick={handleLoadCode}>Load</button>
+              </div>
+              {loadError && <p className="hall-saveload-error">{loadError}</p>}
+            </div>
+          </div>
+        )}
       </header>
 
       <div className="hall-container">
