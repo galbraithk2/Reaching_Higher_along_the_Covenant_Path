@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo, useRef } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { booths, catLabels, type CategoryKey } from "@/data/content";
-import { BASE_PATH } from "@/lib/basePath";
 
 /* ── Table positions (% of room width / height) ── */
 
@@ -121,27 +120,6 @@ const powerOutlets = [
 // localStorage key for persistent assignments
 const STORAGE_KEY = "hall-assignments";
 
-// Encode assignments as compact URL param: "1-5,2-3,4-12" (tableId-boothId pairs)
-function encodeAssignments(map: Map<number, number>): string {
-  return Array.from(map.entries())
-    .map(([t, b]) => `${t}-${b}`)
-    .join(",");
-}
-
-function decodeAssignments(param: string): Map<number, number> {
-  const map = new Map<number, number>();
-  if (!param) return map;
-  for (const pair of param.split(",")) {
-    const [tStr, bStr] = pair.split("-");
-    const t = Number(tStr);
-    const b = Number(bStr);
-    if (Number.isFinite(t) && Number.isFinite(b) && t > 0 && b > 0) {
-      map.set(t, b);
-    }
-  }
-  return map;
-}
-
 export default function HallLayout() {
   const router = useRouter();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -155,39 +133,15 @@ export default function HallLayout() {
   const [showPwModal, setShowPwModal] = useState(false);
   const [pwValue, setPwValue] = useState("");
 
-  // Share button feedback
-  const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "failed">("idle");
-  const shareTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   // Derived: booth → table reverse lookup
   const boothToTableMap = useMemo(
     () => new Map(Array.from(tableToBoothMap.entries()).map(([t, b]) => [b, t])),
     [tableToBoothMap],
   );
 
-  // Load from URL params first, then localStorage as fallback
+  // Load from localStorage on mount
   useEffect(() => {
     try {
-      const params = new URLSearchParams(window.location.search);
-      const urlAssignments = params.get("a");
-      if (urlAssignments) {
-        const map = decodeAssignments(urlAssignments);
-        if (map.size > 0) {
-          setTableToBoothMap(map);
-          // Also save URL assignments to localStorage so they persist
-          try {
-            localStorage.setItem(
-              STORAGE_KEY,
-              JSON.stringify(Array.from(map.entries())),
-            );
-          } catch { /* storage unavailable */ }
-          setIsLoaded(true);
-          // Clean the URL param so bookmarking works normally after
-          window.history.replaceState({}, "", window.location.pathname);
-          return;
-        }
-      }
-      // No URL data — load from localStorage
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const entries: [number, number][] = JSON.parse(saved);
@@ -200,12 +154,10 @@ export default function HallLayout() {
   // Persist whenever assignments change
   useEffect(() => {
     if (isLoaded) {
-      try {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify(Array.from(tableToBoothMap.entries())),
-        );
-      } catch { /* storage unavailable (e.g. iOS private browsing) */ }
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(Array.from(tableToBoothMap.entries())),
+      );
     }
   }, [tableToBoothMap, isLoaded]);
 
@@ -265,34 +217,6 @@ export default function HallLayout() {
     setShowPwModal(false);
     setPwValue("");
   }, [pwValue]);
-
-  // Share: copy URL with assignments encoded
-  const handleShare = useCallback(async () => {
-    if (tableToBoothMap.size === 0) return;
-    const encoded = encodeAssignments(tableToBoothMap);
-    const url = `${window.location.origin}${BASE_PATH}/hall?a=${encoded}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      setShareStatus("copied");
-    } catch {
-      // Fallback for older browsers / iOS permission issues
-      try {
-        const ta = document.createElement("textarea");
-        ta.value = url;
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        setShareStatus("copied");
-      } catch {
-        setShareStatus("failed");
-      }
-    }
-    if (shareTimerRef.current) clearTimeout(shareTimerRef.current);
-    shareTimerRef.current = setTimeout(() => setShareStatus("idle"), 2500);
-  }, [tableToBoothMap]);
 
   /* ── Helpers ── */
 
@@ -376,19 +300,6 @@ export default function HallLayout() {
         <div className="hall-progress">
           {assignedCount} of {totalBooths} booths assigned
         </div>
-        {assignedCount > 0 && (
-          <button
-            className="hall-share-btn"
-            onClick={handleShare}
-            aria-label="Copy shareable link with current table assignments"
-          >
-            {shareStatus === "copied"
-              ? "Link Copied!"
-              : shareStatus === "failed"
-                ? "Copy failed — try again"
-                : "Share Layout"}
-          </button>
-        )}
       </header>
 
       <div className="hall-container">
