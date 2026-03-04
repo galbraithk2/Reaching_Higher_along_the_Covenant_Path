@@ -1249,6 +1249,30 @@ footer a:hover { text-decoration: underline; }
   color: var(--text-muted);
 }
 
+/* Share Layout button */
+.hall-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #475569;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-body), 'Inter', sans-serif;
+  transition: background 0.2s var(--ease);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hall-share-btn:hover {
+  background: #334155;
+}
+
 /* Reset is triggered via secret double-click on "Stake" — no visible button */
 
 /* ── Table interactive states ── */
