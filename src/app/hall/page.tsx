@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { booths, catLabels, type CategoryKey } from "@/data/content";
+import { BASE_PATH } from "@/lib/basePath";
 
 /* ── Table positions (% of room width / height) ── */
 
@@ -154,12 +155,9 @@ export default function HallLayout() {
   const [showPwModal, setShowPwModal] = useState(false);
   const [pwValue, setPwValue] = useState("");
 
-  // Save/Load panel state
-  const [showSaveLoad, setShowSaveLoad] = useState(false);
-  const [loadCode, setLoadCode] = useState("");
-  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
-  const [loadError, setLoadError] = useState("");
-  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Share button feedback
+  const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "failed">("idle");
+  const shareTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Derived: booth → table reverse lookup
   const boothToTableMap = useMemo(
@@ -268,42 +266,33 @@ export default function HallLayout() {
     setPwValue("");
   }, [pwValue]);
 
-  // Copy the save code to clipboard
-  const handleCopyCode = useCallback(async () => {
-    const code = encodeAssignments(tableToBoothMap);
+  // Share: copy URL with assignments encoded
+  const handleShare = useCallback(async () => {
+    if (tableToBoothMap.size === 0) return;
+    const encoded = encodeAssignments(tableToBoothMap);
+    const url = `${window.location.origin}${BASE_PATH}/hall?a=${encoded}`;
     try {
-      await navigator.clipboard.writeText(code);
-      setCopyStatus("copied");
+      await navigator.clipboard.writeText(url);
+      setShareStatus("copied");
     } catch {
+      // Fallback for older browsers / iOS permission issues
       try {
         const ta = document.createElement("textarea");
-        ta.value = code;
+        ta.value = url;
         ta.style.position = "fixed";
         ta.style.opacity = "0";
         document.body.appendChild(ta);
         ta.select();
         document.execCommand("copy");
         document.body.removeChild(ta);
-        setCopyStatus("copied");
+        setShareStatus("copied");
       } catch {
-        setCopyStatus("failed");
+        setShareStatus("failed");
       }
     }
-    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-    copyTimerRef.current = setTimeout(() => setCopyStatus("idle"), 2500);
+    if (shareTimerRef.current) clearTimeout(shareTimerRef.current);
+    shareTimerRef.current = setTimeout(() => setShareStatus("idle"), 2500);
   }, [tableToBoothMap]);
-
-  // Load assignments from a pasted code
-  const handleLoadCode = useCallback(() => {
-    setLoadError("");
-    const trimmed = loadCode.trim();
-    if (!trimmed) { setLoadError("Paste a code first"); return; }
-    const map = decodeAssignments(trimmed);
-    if (map.size === 0) { setLoadError("Invalid code — try again"); return; }
-    setTableToBoothMap(map);
-    setLoadCode("");
-    setShowSaveLoad(false);
-  }, [loadCode]);
 
   /* ── Helpers ── */
 
@@ -387,46 +376,18 @@ export default function HallLayout() {
         <div className="hall-progress">
           {assignedCount} of {totalBooths} booths assigned
         </div>
-        <button
-          className="hall-share-btn"
-          onClick={() => { setShowSaveLoad((v) => !v); setLoadError(""); setCopyStatus("idle"); }}
-        >
-          {showSaveLoad ? "Close" : "Save / Load Layout"}
-        </button>
-
-        {showSaveLoad && (
-          <div className="hall-saveload-panel">
-            {/* Save section */}
-            {assignedCount > 0 && (
-              <div className="hall-saveload-section">
-                <p className="hall-saveload-label">Your save code:</p>
-                <div className="hall-saveload-code-row">
-                  <code className="hall-saveload-code">{encodeAssignments(tableToBoothMap)}</code>
-                  <button className="hall-saveload-copy" onClick={handleCopyCode}>
-                    {copyStatus === "copied" ? "Copied!" : copyStatus === "failed" ? "Failed" : "Copy"}
-                  </button>
-                </div>
-                <p className="hall-saveload-hint">Copy this code and paste it on your other device.</p>
-              </div>
-            )}
-
-            {/* Load section */}
-            <div className="hall-saveload-section">
-              <p className="hall-saveload-label">Load from a code:</p>
-              <div className="hall-saveload-code-row">
-                <input
-                  className="hall-saveload-input"
-                  type="text"
-                  placeholder="Paste code here"
-                  value={loadCode}
-                  onChange={(e) => { setLoadCode(e.target.value); setLoadError(""); }}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleLoadCode(); }}
-                />
-                <button className="hall-saveload-load" onClick={handleLoadCode}>Load</button>
-              </div>
-              {loadError && <p className="hall-saveload-error">{loadError}</p>}
-            </div>
-          </div>
+        {assignedCount > 0 && (
+          <button
+            className="hall-share-btn"
+            onClick={handleShare}
+            aria-label="Copy shareable link with current table assignments"
+          >
+            {shareStatus === "copied"
+              ? "Link Copied!"
+              : shareStatus === "failed"
+                ? "Copy failed — try again"
+                : "Share Layout"}
+          </button>
         )}
       </header>
 
