@@ -46,6 +46,36 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Security headers — delivered via <meta> because this is a static export (GitHub Pages has no server to set HTTP headers) */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content={[
+            "default-src 'self'",
+            // Next.js inlines CSS; GA requires an inline init script
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            // GA loader + inline gtag() bootstrap; no external scripts beyond GA
+            "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+            // Google Fonts glyphs
+            "font-src 'self' https://fonts.gstatic.com",
+            // Site images, data-URIs, and any HTTPS image in dangerouslySetInnerHTML content
+            "img-src 'self' data: https:",
+            // GA beacon endpoints
+            "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
+            // YouTube embeds rendered inside dangerouslySetInnerHTML content
+            "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+            // Block plugins (Flash, etc.)
+            "object-src 'none'",
+            // Prevent <base> tag injection
+            "base-uri 'self'",
+            // No forms on this site, lock it down
+            "form-action 'self'",
+            // Prevent this page from being framed by other origins (clickjacking)
+            "frame-ancestors 'none'",
+          ].join("; ")}
+        />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-6SH6W03ZGT"
           strategy="afterInteractive"
