@@ -162,10 +162,10 @@ export const classes: ClassItem[] = [
     desc: "Discover meaningful ways to teach the gospel within your home. Share ideas and learn from others about creating a home centered on Christ.",
   },
   {
-    title: "Take Charge of Technology",
+    title: "A Safety and Technology Plan Discussion",
     schedule: "Hourly",
     location: "Relief Society Room",
-    who: "YSAs & Jason Flaig",
+    who: "Jason Flaig and Detective Teague from the Madison Sheriff's Office",
     desc: "Get help with technology challenges. Young adults offer hands-on assistance with phones, apps, FamilySearch, and other digital tools. Come with your questions and devices!",
   },
   {
