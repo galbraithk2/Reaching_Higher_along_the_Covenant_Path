@@ -114,7 +114,7 @@ export const booths: Record<CategoryKey, Booth[]> = {
     {
       title: "Institute Booth",
       who: "Institute Representatives",
-      desc: "Build faith. Find friends. Live the gospel. Learn what Institute offers young adults, why it matters, and how to join. Institute classes are available for all young adults ages 18–30.",
+      desc: "Build faith. Find friends. Live the gospel. Learn what Institute offers young adults, why it matters, and how to join. Institute classes are available for all young adults ages 18–35.",
     },
   ],
   selfreliance: [
