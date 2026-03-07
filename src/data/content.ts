@@ -166,7 +166,7 @@ export const classes: ClassItem[] = [
     schedule: "Hourly",
     location: "Relief Society Room",
     who: "Jason Flaig and Detective Teague from the Madison Sheriff's Office",
-    desc: "Get help with technology challenges. Young adults offer hands-on assistance with phones, apps, FamilySearch, and other digital tools. Come with your questions and devices!",
+    desc: 'Smartphones are powerful tools\u2014but they also come with real risks for families. Join us to learn how to create a family technology plan that works. You\u2019ll leave with practical steps to set healthy boundaries and confidently manage the phones in your home.<a href="https://www.youtube.com/@SugarStakeYouth" target="_blank" rel="noopener noreferrer" class="yt-card" style="margin-top:14px"><span class="yt-icon"><svg viewBox="0 0 24 24" width="40" height="40"><rect width="24" height="24" rx="4" fill="#FF0000"/><polygon points="10,7.5 16,12 10,16.5" fill="#fff"/></svg></span><span class="yt-card-text"><span class="yt-card-label">WATCH ON YOUTUBE</span><span class="yt-card-title">How To Videos</span><span class="yt-card-sub">Sugar Stake Youth &middot; Tips &amp; tutorials</span></span><span class="yt-card-arrow">&rsaquo;</span></a>',
   },
   {
     title: "Use AI to Bring Your Ancestors to Life",
