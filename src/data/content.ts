@@ -114,7 +114,7 @@ export const booths: Record<CategoryKey, Booth[]> = {
     {
       title: "Institute Booth",
       who: "Institute Representatives",
-      desc: "Build faith. Find friends. Live the gospel. Learn what Institute offers young adults, why it matters, and how to join. Institute classes are available for all young adults ages 18–35.<br><br><a href=\"https://myinstitute.churchofjesuschrist.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Click here to find an Institute class near you</a>",
+      desc: "Build faith. Find friends. Live the gospel. Learn what Institute offers young adults, why it matters, and how to join. Institute classes are available for all young adults ages 18–35.<br><br>Click here to find an Institute class near you: <a href=\"https://www.youtube.com/@SugarStakeYouth\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:#1a73e8;\">https://www.youtube.com/@SugarStakeYouth</a>",
     },
   ],
   selfreliance: [
