@@ -55,7 +55,7 @@ export const booths: Record<CategoryKey, Booth[]> = {
     {
       title: "Family History Q&A",
       who: "Robert & Sandra Myers",
-      desc: "Get your family history questions answered, receive personalized guidance. Discover new resources and potential links for your own research.",
+      desc: "Get your family history questions answered and receive personalized guidance. Discover new resources and potential links for your own research.",
     },
     {
       title: "Photo Scanning Station",
