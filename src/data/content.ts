@@ -53,9 +53,9 @@ export const booths: Record<CategoryKey, Booth[]> = {
       desc: "Discover ideas to get the entire family excited about temple and family history work. Families with children and teenagers share hands-on ideas including temple visits, FHE lessons, discussing the five covenants, drawing pictures, FamilySearch activities, fan charts, and more.",
     },
     {
-      title: "Family History Q&A + RootsTech Highlights",
+      title: "Family History Q&A",
       who: "Robert & Sandra Myers",
-      desc: "Get your family history questions answered, receive personalized guidance, and be inspired with highlights, tools, and topics from RootsTech. Discover new resources and potential links for your own research.",
+      desc: "Get your family history questions answered, receive personalized guidance. Discover new resources and potential links for your own research.",
     },
     {
       title: "Photo Scanning Station",
