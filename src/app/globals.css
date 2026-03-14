@@ -220,19 +220,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Mini-classes text section */
 .hr-mini-classes {
-  background: #fff;
-  padding: 28px 32px 24px;
+  background: var(--bg);
+  padding: 36px 40px 32px;
   max-width: 860px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 .hr-mini-classes-heading {
   font-family: var(--font-heading), 'DM Sans', sans-serif;
-  font-size: clamp(16px, 2.5vw, 20px);
+  font-size: clamp(22px, 3.5vw, 32px);
   font-weight: 700;
   text-decoration: underline;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .hr-mini-classes-list {
   list-style: none;
@@ -240,10 +240,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 .hr-mini-classes-list li {
-  font-size: clamp(13px, 2vw, 15px);
+  font-size: clamp(16px, 2.4vw, 22px);
   color: var(--text-primary);
   line-height: 1.5;
 }
@@ -255,18 +255,23 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-/* Map image — object-position crops to show only the floor plan */
+/* Map image — crops to show only the floor plan.
+   Image is 1304×1131px. Map portion is the bottom ~645px (top ~486px = header+list).
+   Container aspect-ratio = 1304:645 so it's exactly the right height at any width.
+   Image is pinned to bottom:0 so the map always fills the container correctly. */
 .hr-map-crop {
   width: 100%;
+  aspect-ratio: 1304 / 645;
   overflow: hidden;
+  position: relative;
 }
 .hr-map-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: auto;
   display: block;
-  /* The full image has header+mini-classes at top (~42%) and map at bottom (~58%).
-     Shift the image up to hide the top portion. */
-  margin-top: -42%;
 }
 
 /* ═══ INVITE STRIP ═══ */
