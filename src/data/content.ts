@@ -155,10 +155,10 @@ export const classes: ClassItem[] = [
     desc: "Join President Wells for a brief, uplifting message about walking the covenant path. Sessions repeat every 20 minutes throughout the morning.",
   },
   {
-    title: "President Kristin Galbraith<br><span class=\"title-sub\"><em>Teaching within the Home</em></span>",
+    title: "Relief Society President Kristin Galbraith & Kevin Galbraith<br><span class=\"title-sub\"><em>Teaching within the Home</em></span>",
     schedule: "Every 20 min",
     location: "High Council Room",
-    who: "Stake Relief Society President - Kristin Galbraith",
+    who: "Kristin & Kevin Galbraith",
     desc: "Discover meaningful ways to teach the gospel within your home. Share ideas and learn from others about creating a home centered on Christ.",
   },
   {
