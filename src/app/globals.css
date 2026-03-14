@@ -220,8 +220,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Mini-classes text section */
 .hr-mini-classes {
-  background: var(--bg);
-  padding: 36px 40px 32px;
+  background: #fff;
+  padding: 36px 40px 32px 72px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -242,20 +242,28 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
 }
 .hr-mini-classes-list li {
+  display: flex;
+  align-items: center;
   font-size: clamp(15px, 1.7vw, 20px);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1;
   white-space: nowrap;
 }
 .hr-checkbox {
-  margin-right: 10px;
-  font-size: 1.4em;
-  vertical-align: middle;
+  margin-right: 12px;
+  font-size: 1.7em;
+  flex-shrink: 0;
+  line-height: 1;
 }
 .hr-room {
   text-decoration: underline;
 }
 
+/* Map — slightly narrower than full width, white background to match mini-classes */
+.hr-map-wrap {
+  background: #fff;
+  padding: 0 2% 24px;
+}
 /* Map image — crops to show only the floor plan.
    Image is 1304×1131px. Map portion starts at ~y=430 (header+list=430px).
    Map height = 701px. Aspect-ratio = 1304:701.
