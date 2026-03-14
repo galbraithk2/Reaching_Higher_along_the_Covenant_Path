@@ -5,9 +5,10 @@ import { BASE_PATH } from "@/lib/basePath";
 
 type Props = {
   onOpenFlyers: () => void;
+  onSecretTrigger?: () => void;
 };
 
-export default function CTASection({ onOpenFlyers }: Props) {
+export default function CTASection({ onOpenFlyers, onSecretTrigger }: Props) {
   const tapRef = useRef<number>(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -46,8 +47,14 @@ export default function CTASection({ onOpenFlyers }: Props) {
         </p>
         <p className="cta-message">
           Whether you&rsquo;re chasing toddlers, starting a career, raising
-          teenagers, enjoying retirement, or somewhere in between — please join
-          us!
+          teenagers, enjoying retirement, or somewhere in between —{" "}
+          <span
+            onDoubleClick={onSecretTrigger}
+            style={{ cursor: "default", userSelect: "none" }}
+          >
+            please
+          </span>{" "}
+          join us!
         </p>
         <button className="cta-btn" onClick={onOpenFlyers}>
           <svg
