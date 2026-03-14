@@ -4,6 +4,17 @@ interface HiddenRevisionProps {
   onClose: () => void;
 }
 
+const miniClasses = [
+  { title: "President Edwin Wells", detail: "Every 20 min", room: "Chapel" },
+  { title: "President Kristin Galbraith · Teaching within the Home", detail: "Every 20 min", room: "High Council Room" },
+  { title: "A Safety and Technology Plan Discussion", detail: "Hourly", room: "Relief Society Room" },
+  { title: "Use AI to Bring Your Ancestors to Life", detail: "Every 20 minutes", room: "Young Women's Room" },
+  { title: "Did I Remember Everything? Organizing Vital Documents", detail: "Every 20 min", room: "Room 9" },
+  { title: "Family History Q&A", detail: "Open all morning", room: "Rooms 6 & 7" },
+  { title: "The Teton Dam Disaster", detail: "Every 20 minutes", room: "Priesthood Room" },
+  { title: "Job Search, Résumé Tips & Networking Strategies", detail: "Open all morning", room: "Rooms 9" },
+];
+
 export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
   return (
     <>
@@ -44,13 +55,27 @@ export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
         </p>
       </div>
 
-      {/* Flyer / map */}
-      <div className="hidden-revision-flyer">
+      {/* Mini-Classes as text */}
+      <section className="hr-mini-classes">
+        <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
+        <ul className="hr-mini-classes-list">
+          {miniClasses.map((c, i) => (
+            <li key={i}>
+              <span className="hr-checkbox">&#9633;</span>
+              {c.title}
+              {" "}({c.detail} &middot; <span className="hr-room">{c.room}</span>)
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Map image — cropped to show only the floor plan */}
+      <div className="hr-map-crop">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${BASE_PATH}/images/MapAndClasses.png`}
-          alt="Reaching Higher along the Covenant Path — mini-classes and location map"
-          className="hidden-revision-flyer-img"
+          alt="Booth and mini-class location map"
+          className="hr-map-img"
         />
       </div>
     </>
