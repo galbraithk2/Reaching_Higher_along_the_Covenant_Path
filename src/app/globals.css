@@ -175,6 +175,24 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-subtle);
 }
 
+/* ═══ HIDDEN REVISION ═══ */
+.hidden-revision {
+  display: none;
+}
+.hidden-revision.visible {
+  display: block;
+}
+.hidden-revision-strip {
+  background: var(--bg-subtle);
+  padding: 20px 20px 0;
+  text-align: center;
+}
+/* The .invite-date gold line is reused inside hidden-revision-strip */
+.hidden-revision-strip .invite-date {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 /* ═══ INVITE STRIP ═══ */
 .invite-strip {
   background: var(--bg-subtle);

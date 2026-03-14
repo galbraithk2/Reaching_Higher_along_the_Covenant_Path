@@ -1,4 +1,8 @@
-export default function InviteStrip() {
+interface InviteStripProps {
+  onSecretTrigger?: () => void;
+}
+
+export default function InviteStrip({ onSecretTrigger }: InviteStripProps) {
   return (
     <div className="invite-strip">
       <div className="invite-inner">
@@ -11,7 +15,11 @@ export default function InviteStrip() {
         </p>
         <p className="invite-who">
           Children, youth, young adults, single adults, couples, families, empty
-          nesters. Please join us.
+          nesters.{" "}
+          <span onDoubleClick={onSecretTrigger} style={{ cursor: "default" }}>
+            Please
+          </span>{" "}
+          join us.
         </p>
         <p className="invite-details">
           Dress casual &middot; Enjoy snacks! &middot; Visit booths &middot;

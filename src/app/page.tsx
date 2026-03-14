@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Hero from "@/components/Hero";
 import InviteStrip from "@/components/InviteStrip";
+import HiddenRevision from "@/components/HiddenRevision";
 import SectionNav from "@/components/SectionNav";
 import ScrollReveal from "@/components/ScrollReveal";
 import BoothCard from "@/components/BoothCard";
@@ -30,6 +31,7 @@ export default function Home() {
     color: "",
   });
   const [flyerOpen, setFlyerOpen] = useState(false);
+  const [revisionVisible, setRevisionVisible] = useState(false);
 
   const openModal = useCallback(
     (title: string, who: string, desc: string, color: string) => {
@@ -45,7 +47,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <InviteStrip />
+      <InviteStrip onSecretTrigger={() => setRevisionVisible((v) => !v)} />
+      <div className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
+        <HiddenRevision />
+      </div>
       <SectionNav />
 
       {categories.map((cat, idx) => (
