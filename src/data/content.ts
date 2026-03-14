@@ -158,6 +158,7 @@ export const classes: ClassItem[] = [
   {
     title: "Teaching within the Home",
     cardTitle: "Relief Society President Kristin Galbraith & Kevin Galbraith",
+    subtitle: "Teaching within the Home",
     schedule: "Every 20 min",
     location: "High Council Room",
     who: "Kristin & Kevin Galbraith",
