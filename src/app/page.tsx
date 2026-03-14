@@ -49,7 +49,7 @@ export default function Home() {
       <Hero />
       <InviteStrip onSecretTrigger={() => setRevisionVisible((v) => !v)} />
       <div className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
-        <HiddenRevision />
+        <HiddenRevision onClose={() => setRevisionVisible(false)} />
       </div>
       <SectionNav />
 
