@@ -1,8 +1,20 @@
 import { BASE_PATH } from "@/lib/basePath";
 
-export default function HiddenRevision() {
+interface HiddenRevisionProps {
+  onClose: () => void;
+}
+
+export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
   return (
     <>
+      <button
+        className="hidden-revision-close"
+        onClick={onClose}
+        aria-label="Close preview"
+      >
+        ✕
+      </button>
+
       {/* Hero */}
       <section className="hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
