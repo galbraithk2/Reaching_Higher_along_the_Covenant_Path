@@ -255,18 +255,23 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-/* Map image — object-position crops to show only the floor plan */
+/* Map image — crops to show only the floor plan.
+   Image is 1304×1131px. Map portion is the bottom ~645px (top ~486px = header+list).
+   Container aspect-ratio = 1304:645 so it's exactly the right height at any width.
+   Image is pinned to bottom:0 so the map always fills the container correctly. */
 .hr-map-crop {
   width: 100%;
+  aspect-ratio: 1304 / 645;
   overflow: hidden;
+  position: relative;
 }
 .hr-map-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: auto;
   display: block;
-  /* The full image has header+mini-classes at top (~42%) and map at bottom (~58%).
-     Shift the image up to hide the top portion. */
-  margin-top: -42%;
 }
 
 /* ═══ INVITE STRIP ═══ */
