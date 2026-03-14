@@ -15,6 +15,7 @@ export type Booth = {
 
 export type ClassItem = {
   title: string;
+  cardTitle?: string;
   schedule: string;
   location: string;
   who: string;
@@ -156,6 +157,7 @@ export const classes: ClassItem[] = [
   },
   {
     title: "Teaching within the Home",
+    cardTitle: "Relief Society President Kristin Galbraith & Kevin Galbraith",
     schedule: "Every 20 min",
     location: "High Council Room",
     who: "Kristin & Kevin Galbraith",
