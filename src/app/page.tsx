@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <InviteStrip onSecretTrigger={() => setRevisionVisible((v) => !v)} />
+      <InviteStrip />
       <div className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
         <HiddenRevision onClose={() => setRevisionVisible(false)} />
       </div>
@@ -94,7 +94,10 @@ export default function Home() {
         </section>
       </ScrollReveal>
 
-      <CTASection onOpenFlyers={() => setFlyerOpen(true)} />
+      <CTASection
+        onOpenFlyers={() => setFlyerOpen(true)}
+        onSecretTrigger={() => setRevisionVisible((v) => !v)}
+      />
 
       <Footer />
 
