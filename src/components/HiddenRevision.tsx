@@ -43,6 +43,16 @@ export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
           Center
         </p>
       </div>
+
+      {/* Flyer / map */}
+      <div className="hidden-revision-flyer">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BASE_PATH}/images/MapAndClasses.png`}
+          alt="Reaching Higher along the Covenant Path — mini-classes and location map"
+          className="hidden-revision-flyer-img"
+        />
+      </div>
     </>
   );
 }
