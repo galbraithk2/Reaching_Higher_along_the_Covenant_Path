@@ -36,7 +36,7 @@ export default function ClassCard({ classItem, onOpen }: Props) {
         }
       }}
     >
-      <h4 dangerouslySetInnerHTML={{ __html: c.title }} />
+      <h4 dangerouslySetInnerHTML={{ __html: c.cardTitle ?? c.title }} />
       {c.subtitle && (
         <div className="class-subtitle">{c.subtitle}</div>
       )}
