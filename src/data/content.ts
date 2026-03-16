@@ -3,7 +3,7 @@
 const jobSearchData = {
   title: "Job Search, Résumé Tips & Networking Strategies",
   who: "John Ekins",
-  desc: "Get help with your job search, résumé writing, and professional networking. Whether you're just starting out or looking for a change, come get practical career guidance.",
+  desc: 'Get help with your job search, résumé writing, and professional networking. Whether you\'re just starting out or looking for a change, come get practical career guidance.<p style="margin-top:16px"><a href="https://www.churchofjesuschrist.org/life/help-for-job-seekers?lang=eng" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;color:#1a73e8;font-weight:600;text-decoration:underline;">Help for Job Seekers<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>',
 };
 
 export type Booth = {
