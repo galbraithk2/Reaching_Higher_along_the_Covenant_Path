@@ -221,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mini-classes text section */
 .hr-mini-classes {
   background: #fff;
-  padding: 36px 2% 32px 2%;
+  padding: 36px 2% 32px 16%;
   width: 100%;
   box-sizing: border-box;
 }
@@ -243,7 +243,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hr-mini-classes-list li {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   font-size: clamp(15px, 1.7vw, 20px);
   color: var(--text-primary);
   line-height: 1.5;
@@ -253,8 +253,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.3em;
   flex-shrink: 0;
   line-height: 1;
-  position: relative;
-  top: 0.1em;
 }
 .hr-room {
   text-decoration: underline;
