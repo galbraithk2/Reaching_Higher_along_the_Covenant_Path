@@ -62,8 +62,7 @@ export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
           {miniClasses.map((c, i) => (
             <li key={i}>
               <span className="hr-checkbox">&#9633;</span>
-              {c.title}
-              {" "}({c.detail} &middot; <span className="hr-room">{c.room}</span>)
+              <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
             </li>
           ))}
         </ul>
