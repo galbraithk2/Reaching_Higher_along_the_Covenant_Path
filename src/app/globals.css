@@ -209,14 +209,18 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(0, 0, 0, 0.65);
 }
 .hidden-revision-strip {
-  background: var(--bg);
+  background: #fff;
   padding: 20px 20px 0;
   text-align: center;
+  border-bottom: 2px solid var(--gold);
 }
-/* The .invite-date gold line is reused inside hidden-revision-strip */
+/* Override invite-date inside hidden-revision-strip: remove its own border,
+   let the strip-level border span full width */
 .hidden-revision-strip .invite-date {
   max-width: 700px;
   margin: 0 auto;
+  border-bottom: none;
+  padding-bottom: 20px;
 }
 /* Mini-classes text section */
 .hr-mini-classes {
