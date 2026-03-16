@@ -209,7 +209,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(0, 0, 0, 0.65);
 }
 .hidden-revision-strip {
-  background: var(--bg-subtle);
+  background: var(--bg);
   padding: 20px 20px 0;
   text-align: center;
 }
@@ -243,11 +243,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hr-mini-classes-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: clamp(15px, 1.7vw, 20px);
   color: var(--text-primary);
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.5;
 }
 .hr-checkbox {
   margin-right: 12px;
@@ -285,7 +284,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ═══ INVITE STRIP ═══ */
 .invite-strip {
-  background: var(--bg-subtle);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 28px 20px 24px;
   text-align: center;
