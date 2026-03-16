@@ -225,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mini-classes text section */
 .hr-mini-classes {
   background: #fff;
-  padding: 36px 2% 32px 16%;
+  padding: 36px 2% 32px calc(16% - 2.6em);
   width: 100%;
   box-sizing: border-box;
 }
