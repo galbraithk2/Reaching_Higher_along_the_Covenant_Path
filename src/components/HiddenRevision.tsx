@@ -59,21 +59,42 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
 
       <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
 
-      {/* Map image — constrained to text width, seamless/borderless */}
-      <div className="hr-map-wrap">
-        <div className="hr-map-inner">
-          <div className="hr-map-crop">
+      {/* Conference Day Map */}
+      <section className="section-wide section-alt">
+        <div className="category-header">
+          <h2>🗺️ Conference Day Map</h2>
+        </div>
+        <div className="conf-map-scroll-wrap">
+          <div className="conf-map-crop">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${BASE_PATH}/images/MapAndClasses.png`}
               alt="Booth and mini-class location map"
-              className="hr-map-img"
+              className="conf-map-img"
             />
           </div>
         </div>
-      </div>
+        <p className="conf-map-hint">← Scroll to see full map →</p>
+      </section>
 
-      {/* ── Replicated landing page content below the map ── */}
+      {/* Mini Classes — shown right after the map */}
+      <ScrollReveal>
+        <section id="hr-classes">
+          <div className="section-wide classes-bg">
+            <div className="category-header">
+              <h2>📚 Mini Classes</h2>
+              <p>Short workshops on topics that matter</p>
+            </div>
+            <div className="class-grid">
+              {classes.map((classItem, i) => (
+                <ClassCard key={i} classItem={classItem} onOpen={onOpen} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ── Booth sections — Self-Reliance is last ── */}
 
       {categories.map((cat, idx) => (
         <ScrollReveal key={cat.key}>
@@ -99,22 +120,6 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
           </section>
         </ScrollReveal>
       ))}
-
-      <ScrollReveal>
-        <section id="hr-classes">
-          <div className="section-wide classes-bg">
-            <div className="category-header">
-              <h2>📚 Mini Classes</h2>
-              <p>Short workshops on topics that matter</p>
-            </div>
-            <div className="class-grid">
-              {classes.map((classItem, i) => (
-                <ClassCard key={i} classItem={classItem} onOpen={onOpen} />
-              ))}
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
 
       <CTASection onOpenFlyers={onOpenFlyers} />
 
