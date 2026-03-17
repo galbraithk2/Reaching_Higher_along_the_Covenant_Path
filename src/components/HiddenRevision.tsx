@@ -73,8 +73,13 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
         <ul className="hr-mini-classes-list">
           {miniClasses.map((c, i) => (
             <li key={i}>
-              <span className="hr-checkbox">&#9633;</span>
-              <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
+              <button
+                className="hr-mini-class-btn"
+                onClick={() => onOpen(classes[i].title, classes[i].who, classes[i].desc, "")}
+              >
+                <span className="hr-checkbox">&#9633;</span>
+                <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
+              </button>
             </li>
           ))}
         </ul>
