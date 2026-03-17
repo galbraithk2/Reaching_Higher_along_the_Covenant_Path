@@ -6,9 +6,10 @@ import { BASE_PATH } from "@/lib/basePath";
 type Props = {
   onOpenFlyers: () => void;
   onSecretTrigger?: () => void;
+  disableStakeNav?: boolean;
 };
 
-export default function CTASection({ onOpenFlyers, onSecretTrigger }: Props) {
+export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
   const tapRef = useRef<number>(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -31,18 +32,22 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger }: Props) {
       <div className="cta-inner">
         <p className="cta-date">
           Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot;{" "}
-          <span
-            onClick={handleTap}
-            role="text"
-            style={{
-              cursor: "default",
-              WebkitUserSelect: "none",
-              userSelect: "none",
-              touchAction: "manipulation",
-            }}
-          >
-            Stake
-          </span>{" "}
+          {disableStakeNav ? (
+            <span>Stake</span>
+          ) : (
+            <span
+              onClick={handleTap}
+              role="text"
+              style={{
+                cursor: "default",
+                WebkitUserSelect: "none",
+                userSelect: "none",
+                touchAction: "manipulation",
+              }}
+            >
+              Stake
+            </span>
+          )}{" "}
           Center
         </p>
         <p className="cta-message">
