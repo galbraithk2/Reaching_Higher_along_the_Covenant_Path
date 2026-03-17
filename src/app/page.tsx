@@ -61,24 +61,22 @@ export default function Home() {
         <ScrollReveal key={cat.key}>
           <section
             id={cat.key}
-            className={idx % 2 !== 0 ? "section-alt" : ""}
+            className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
           >
-            <div className="section-wide">
-              <div className="category-header">
-                <h2>{cat.emoji} {cat.label}</h2>
-                <p>{cat.quote}</p>
-              </div>
-              <div className="booth-grid">
-                {booths[cat.key].map((booth, i) => (
-                  <BoothCard
-                    key={i}
-                    booth={booth}
-                    cat={cat.key}
-                    color={catColors[cat.key]}
-                    onOpen={openModal}
-                  />
-                ))}
-              </div>
+            <div className="category-header">
+              <h2>{cat.emoji} {cat.label}</h2>
+              <p>{cat.quote}</p>
+            </div>
+            <div className="booth-grid">
+              {booths[cat.key].map((booth, i) => (
+                <BoothCard
+                  key={i}
+                  booth={booth}
+                  cat={cat.key}
+                  color={catColors[cat.key]}
+                  onOpen={openModal}
+                />
+              ))}
             </div>
           </section>
         </ScrollReveal>
