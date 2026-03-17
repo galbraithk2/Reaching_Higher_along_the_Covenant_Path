@@ -224,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Mini-classes text section */
 .hr-mini-classes {
-  background: var(--bg);
+  background: var(--bg-subtle);
   padding: 40px 20px 36px;
 }
 .hr-mini-classes-inner {
@@ -232,8 +232,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 .hr-mini-classes-heading {
-  font-family: var(--font-heading), 'DM Sans', sans-serif;
-  font-size: clamp(22px, 3.5vw, 30px);
+  font-size: clamp(26px, 3.5vw, 36px);
   font-weight: 700;
   text-decoration: underline;
   color: var(--text-primary);
