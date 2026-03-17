@@ -286,6 +286,53 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
+/* ═══ CONFERENCE DAY MAP (public section) ═══ */
+.conf-map-section {
+  /* inherits section-wide padding/max-width */
+}
+
+/* Horizontal-scroll wrapper — lets small screens scroll the map rather than
+   squishing it to the point where room labels become unreadable */
+.conf-map-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Inner crop: preserves the floor-plan portion of the image.
+   Image is 1304×1131px; map starts at ~y=430px.
+   min-width keeps labels legible on phones — users scroll horizontally. */
+.conf-map-crop {
+  min-width: 640px;
+  aspect-ratio: 1304 / 701;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Pin image to bottom so the floor-plan fills the crop area */
+.conf-map-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Scroll hint — only shown when the map overflows on narrow screens */
+.conf-map-hint {
+  display: none;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+@media (max-width: 680px) {
+  .conf-map-hint { display: block; }
+}
+
 /* Map — matches text column width, seamless/borderless */
 .hr-map-wrap {
   background: var(--bg);
