@@ -1518,6 +1518,13 @@ footer a:hover { text-decoration: underline; }
   gap: 12px;
 }
 
+.hall-footer-note {
+  text-align: center;
+  padding: 2rem 1rem 2.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
 .hall-booth-card {
   border: 2px solid;
   border-radius: 10px;

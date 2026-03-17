@@ -17,7 +17,7 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger }: Props) {
     if (tapRef.current >= 2) {
       tapRef.current = 0;
       if (timerRef.current) clearTimeout(timerRef.current);
-      window.location.href = `${BASE_PATH}/hall`;
+      window.location.href = `${BASE_PATH}/`;
       return;
     }
     if (timerRef.current) clearTimeout(timerRef.current);
