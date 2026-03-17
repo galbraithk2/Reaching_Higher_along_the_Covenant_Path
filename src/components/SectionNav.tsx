@@ -10,51 +10,76 @@ const navItems = [
   { id: "classes", label: "Mini Classes", short: "Classes" },
 ];
 
-export default function SectionNav({ idPrefix = "" }: { idPrefix?: string }) {
+interface SectionNavProps {
+  idPrefix?: string;
+  /** ID of the scrollable container (when nav lives outside it as a fixed overlay) */
+  scrollContainerId?: string;
+  /** Override the nav element's id (avoids duplicate ids when two navs are in DOM) */
+  navId?: string;
+}
+
+export default function SectionNav({
+  idPrefix = "",
+  scrollContainerId,
+  navId = "section-nav",
+}: SectionNavProps) {
   const [active, setActive] = useState("");
   const [stuck, setStuck] = useState(false);
 
+  const getContainer = useCallback((): HTMLElement | null => {
+    if (scrollContainerId) return document.getElementById(scrollContainerId);
+    return null;
+  }, [scrollContainerId]);
+
   const handleScroll = useCallback(() => {
-    const nav = document.getElementById("section-nav");
+    const nav = document.getElementById(navId);
     if (!nav) return;
 
-    // Check if nav is stuck (scrolled past its natural position)
-    const navRect = nav.getBoundingClientRect();
-    setStuck(navRect.top <= 0);
+    const container = getContainer();
+    if (container) {
+      setStuck(container.scrollTop > 0);
+    } else {
+      setStuck(nav.getBoundingClientRect().top <= 0);
+    }
 
-    // Determine which section is in view
     const offset = nav.offsetHeight + 16;
     let current = "";
     for (const item of navItems) {
       const el = document.getElementById(idPrefix + item.id);
       if (el) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= offset + 80) {
-          current = item.id;
-        }
+        if (rect.top <= offset + 80) current = item.id;
       }
     }
     setActive(current);
-  }, [idPrefix]);
+  }, [idPrefix, navId, getContainer]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const container = getContainer();
+    const target: EventTarget = container ?? window;
+    target.addEventListener("scroll", handleScroll, { passive: true } as AddEventListenerOptions);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    return () => target.removeEventListener("scroll", handleScroll);
+  }, [handleScroll, getContainer]);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(idPrefix + id);
     if (!el) return;
-    const nav = document.getElementById("section-nav");
+    const nav = document.getElementById(navId);
     const navHeight = nav ? nav.offsetHeight : 0;
-    const y = el.getBoundingClientRect().top + window.scrollY - navHeight - 8;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    const container = getContainer();
+    if (container) {
+      const y = el.getBoundingClientRect().top + container.scrollTop - navHeight - 8;
+      container.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      const y = el.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
     <nav
-      id="section-nav"
+      id={navId}
       className={`section-nav${stuck ? " section-nav--stuck" : ""}`}
       aria-label="Jump to section"
     >
