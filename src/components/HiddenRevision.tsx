@@ -74,7 +74,6 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
             />
           </div>
         </div>
-        <p className="conf-map-hint">← Scroll to see full map →</p>
       </section>
 
       {/* Mini Classes — shown right after the map */}
