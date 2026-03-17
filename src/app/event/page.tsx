@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { BASE_PATH } from "@/lib/basePath";
 import BoothCard from "@/components/BoothCard";
 import ClassCard from "@/components/ClassCard";
@@ -21,6 +22,7 @@ type ModalState = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [modal, setModal] = useState<ModalState>({
     isOpen: false,
     title: "",
@@ -139,7 +141,7 @@ export default function Home() {
 
       <CTASection
         onOpenFlyers={() => setFlyerOpen(true)}
-        disableStakeNav={true}
+        onSecretTrigger={() => router.push("/hall")}
       />
 
       <Footer />

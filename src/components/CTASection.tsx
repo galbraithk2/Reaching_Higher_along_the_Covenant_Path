@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useCallback } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 
 type Props = {
@@ -9,7 +10,36 @@ type Props = {
 };
 
 export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
-  const preventSelect = (e: React.MouseEvent) => e.preventDefault();
+  // Two separate tap counters — each word requires 2 taps within 600 ms
+  const stakeTapRef = useRef(0);
+  const stakeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleStakeTap = useCallback(() => {
+    stakeTapRef.current += 1;
+    if (stakeTapRef.current >= 2) {
+      stakeTapRef.current = 0;
+      if (stakeTimerRef.current) clearTimeout(stakeTimerRef.current);
+      window.location.href = `${BASE_PATH}/hall`;
+      return;
+    }
+    if (stakeTimerRef.current) clearTimeout(stakeTimerRef.current);
+    stakeTimerRef.current = setTimeout(() => { stakeTapRef.current = 0; }, 600);
+  }, []);
+
+  const pleaseTapRef = useRef(0);
+  const pleaseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handlePleaseTap = useCallback(() => {
+    pleaseTapRef.current += 1;
+    if (pleaseTapRef.current >= 2) {
+      pleaseTapRef.current = 0;
+      if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+      onSecretTrigger?.();
+      return;
+    }
+    if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+    pleaseTimerRef.current = setTimeout(() => { pleaseTapRef.current = 0; }, 600);
+  }, [onSecretTrigger]);
 
   return (
     <section className="cta-section">
@@ -20,8 +50,8 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
             <span>Stake</span>
           ) : (
             <span
-              onDoubleClick={() => { window.location.href = `${BASE_PATH}/hall`; }}
-              onMouseDown={preventSelect}
+              onClick={handleStakeTap}
+              role="text"
               style={{
                 cursor: "default",
                 WebkitUserSelect: "none",
@@ -38,8 +68,7 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
           Whether you&rsquo;re chasing toddlers, starting a career, raising
           teenagers, enjoying retirement, or somewhere in between —{" "}
           <span
-            onDoubleClick={() => onSecretTrigger?.()}
-            onMouseDown={preventSelect}
+            onClick={handlePleaseTap}
             style={{
               cursor: "default",
               WebkitUserSelect: "none",
