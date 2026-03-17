@@ -61,7 +61,7 @@ export default function Home() {
         <ScrollReveal key={cat.key}>
           <section
             id={cat.key}
-            className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
+            className={`section-wide${idx % 2 === 0 ? " section-alt" : ""}`}
           >
             <div className="category-header">
               <h2>{cat.emoji} {cat.label}</h2>

@@ -10,7 +10,7 @@ const navItems = [
   { id: "classes", label: "Mini Classes", short: "Classes" },
 ];
 
-export default function SectionNav() {
+export default function SectionNav({ idPrefix = "" }: { idPrefix?: string }) {
   const [active, setActive] = useState("");
   const [stuck, setStuck] = useState(false);
 
@@ -26,7 +26,7 @@ export default function SectionNav() {
     const offset = nav.offsetHeight + 16;
     let current = "";
     for (const item of navItems) {
-      const el = document.getElementById(item.id);
+      const el = document.getElementById(idPrefix + item.id);
       if (el) {
         const rect = el.getBoundingClientRect();
         if (rect.top <= offset + 80) {
@@ -35,7 +35,7 @@ export default function SectionNav() {
       }
     }
     setActive(current);
-  }, []);
+  }, [idPrefix]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -44,7 +44,7 @@ export default function SectionNav() {
   }, [handleScroll]);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
+    const el = document.getElementById(idPrefix + id);
     if (!el) return;
     const nav = document.getElementById("section-nav");
     const navHeight = nav ? nav.offsetHeight : 0;
