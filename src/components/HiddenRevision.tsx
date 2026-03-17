@@ -65,19 +65,17 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
         </p>
       </div>
 
-      {/* Mini-Classes as text */}
-      <section className="hr-mini-classes">
-        <div className="hr-mini-classes-inner">
-          <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
-          <ul className="hr-mini-classes-list">
-            {miniClasses.map((c, i) => (
-              <li key={i}>
-                <span className="hr-checkbox">&#9633;</span>
-                <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Mini-Classes as text — gray box, same style as odd booth sections */}
+      <section className="section-wide section-alt">
+        <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
+        <ul className="hr-mini-classes-list">
+          {miniClasses.map((c, i) => (
+            <li key={i}>
+              <span className="hr-checkbox">&#9633;</span>
+              <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Map image — constrained to text width, seamless/borderless */}
@@ -122,8 +120,8 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
       ))}
 
       <ScrollReveal>
-        <section id="hr-classes" className="classes-bg">
-          <div className="section-wide">
+        <section id="hr-classes">
+          <div className="section-wide classes-bg">
             <div className="category-header">
               <h2>📚 Mini Classes</h2>
               <p>Short workshops on topics that matter</p>

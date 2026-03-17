@@ -83,8 +83,8 @@ export default function Home() {
       ))}
 
       <ScrollReveal>
-        <section id="classes" className="classes-bg">
-          <div className="section-wide">
+        <section id="classes">
+          <div className="section-wide classes-bg">
             <div className="category-header">
               <h2>📚 Mini Classes</h2>
               <p>Short workshops on topics that matter</p>
