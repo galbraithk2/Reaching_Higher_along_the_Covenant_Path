@@ -225,17 +225,19 @@ h1, h2, h3, h4, h5, h6 {
 /* Mini-classes text section */
 .hr-mini-classes {
   background: #fff;
-  padding: 36px 2% 32px calc(16% - 2.6em);
-  width: 100%;
-  box-sizing: border-box;
+  padding: 40px 20px 36px;
+}
+.hr-mini-classes-inner {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .hr-mini-classes-heading {
   font-family: var(--font-heading), 'DM Sans', sans-serif;
-  font-size: clamp(22px, 3.5vw, 32px);
+  font-size: clamp(22px, 3.5vw, 30px);
   font-weight: 700;
   text-decoration: underline;
   color: var(--text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .hr-mini-classes-list {
   list-style: none;
@@ -243,30 +245,33 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 .hr-mini-classes-list li {
   display: flex;
-  align-items: center;
-  font-size: clamp(15px, 1.7vw, 20px);
+  align-items: flex-start;
+  font-size: clamp(15px, 1.5vw, 18px);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .hr-checkbox {
   margin-right: 10px;
-  font-size: 1.3em;
+  font-size: 1.25em;
   flex-shrink: 0;
-  line-height: 1;
-  transform: translateY(-0.15em);
+  line-height: 1.4;
 }
 .hr-room {
   text-decoration: underline;
 }
 
-/* Map — slightly narrower than full width, white background to match mini-classes */
+/* Map — constrained to match section width, flush background */
 .hr-map-wrap {
   background: #fff;
-  padding: 0 2% 24px;
+  padding: 0 20px 36px;
+}
+.hr-map-inner {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 /* Map image — crops to show only the floor plan.
    Image is 1304×1131px. Map portion starts at ~y=430 (header+list=430px).
@@ -277,6 +282,8 @@ h1, h2, h3, h4, h5, h6 {
   aspect-ratio: 1304 / 701;
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
+  border: 1px solid var(--border);
 }
 .hr-map-img {
   position: absolute;
@@ -285,6 +292,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: auto;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .hr-mini-classes { padding: 36px 16px 32px; }
+  .hr-map-wrap { padding: 0 16px 32px; }
+}
+@media (max-width: 640px) {
+  .hr-mini-classes { padding: 32px 16px 28px; }
+  .hr-mini-classes-list li { font-size: 15px; }
+  .hr-map-wrap { padding: 0 16px 28px; }
 }
 
 /* ═══ INVITE STRIP ═══ */
