@@ -300,20 +300,12 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Crop to floor-plan portion only — scales to fit any screen width.
-   Image is 1304×1131px; map starts at ~y=430px → map height = 701px. */
+/* No cropping needed — image is map only */
 .conf-map-crop {
   width: 100%;
-  aspect-ratio: 1304 / 701;
-  overflow: hidden;
-  position: relative;
 }
 
-/* Pin image to bottom so the floor-plan fills the crop area */
 .conf-map-img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   height: auto;
   display: block;
