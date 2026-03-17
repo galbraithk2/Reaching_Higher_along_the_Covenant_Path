@@ -67,26 +67,30 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
 
       {/* Mini-Classes as text */}
       <section className="hr-mini-classes">
-        <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
-        <ul className="hr-mini-classes-list">
-          {miniClasses.map((c, i) => (
-            <li key={i}>
-              <span className="hr-checkbox">&#9633;</span>
-              <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
-            </li>
-          ))}
-        </ul>
+        <div className="hr-mini-classes-inner">
+          <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
+          <ul className="hr-mini-classes-list">
+            {miniClasses.map((c, i) => (
+              <li key={i}>
+                <span className="hr-checkbox">&#9633;</span>
+                <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Map image — cropped to show only the floor plan */}
       <div className="hr-map-wrap">
-        <div className="hr-map-crop">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`${BASE_PATH}/images/MapAndClasses.png`}
-            alt="Booth and mini-class location map"
-            className="hr-map-img"
-          />
+        <div className="hr-map-inner">
+          <div className="hr-map-crop">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${BASE_PATH}/images/MapAndClasses.png`}
+              alt="Booth and mini-class location map"
+              className="hr-map-img"
+            />
+          </div>
         </div>
       </div>
 
