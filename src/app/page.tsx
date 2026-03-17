@@ -13,7 +13,6 @@ import FlyerModal from "@/components/FlyerModal";
 import DetailModal from "@/components/DetailModal";
 import Footer from "@/components/Footer";
 import { booths, classes, categories, catColors } from "@/data/content";
-import { BASE_PATH } from "@/lib/basePath";
 
 type ModalState = {
   isOpen: boolean;
@@ -82,28 +81,6 @@ export default function Home() {
           </section>
         </ScrollReveal>
       ))}
-
-      <ScrollReveal>
-        <section id="map">
-          <div className="section-wide conf-map-section">
-            <div className="category-header">
-              <h2>🗺️ Conference Day Map</h2>
-              <p>Find rooms and booths around the building</p>
-            </div>
-            <div className="conf-map-scroll-wrap">
-              <div className="conf-map-crop">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`${BASE_PATH}/images/MapAndClasses.png`}
-                  alt="Conference day floor plan map"
-                  className="conf-map-img"
-                />
-              </div>
-            </div>
-            <p className="conf-map-hint">← Scroll to see full map →</p>
-          </div>
-        </section>
-      </ScrollReveal>
 
       <ScrollReveal>
         <section id="classes">
