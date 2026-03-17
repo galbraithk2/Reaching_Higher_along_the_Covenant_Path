@@ -80,17 +80,15 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
         </div>
       </section>
 
-      {/* Map image — cropped to show only the floor plan */}
+      {/* Map image — full-bleed, wallpaper style */}
       <div className="hr-map-wrap">
-        <div className="hr-map-inner">
-          <div className="hr-map-crop">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`${BASE_PATH}/images/MapAndClasses.png`}
-              alt="Booth and mini-class location map"
-              className="hr-map-img"
-            />
-          </div>
+        <div className="hr-map-crop">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${BASE_PATH}/images/MapAndClasses.png`}
+            alt="Booth and mini-class location map"
+            className="hr-map-img"
+          />
         </div>
       </div>
 
