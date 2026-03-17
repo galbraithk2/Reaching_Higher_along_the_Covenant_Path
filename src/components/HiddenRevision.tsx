@@ -9,17 +9,6 @@ import ScrollReveal from "@/components/ScrollReveal";
 import SectionNav from "@/components/SectionNav";
 import { booths, classes, categories, catColors } from "@/data/content";
 
-const miniClasses = [
-  { title: "President Edwin Wells", detail: "Every 20 min", room: "Chapel" },
-  { title: "President Kristin Galbraith · Teaching within the Home", detail: "Every 20 min", room: "High Council Room" },
-  { title: "A Safety and Technology Plan Discussion", detail: "Hourly", room: "Relief Society Room" },
-  { title: "Use AI to Bring Your Ancestors to Life", detail: "Every 20 minutes", room: "Young Women's Room" },
-  { title: "Did I Remember Everything? Organizing Vital Documents", detail: "Every 20 min", room: "Room 9" },
-  { title: "Family History Q&A", detail: "Open all morning", room: "Rooms 6 & 7" },
-  { title: "The Teton Dam Disaster", detail: "Every 20 minutes", room: "Priesthood Room" },
-  { title: "Job Search, Résumé Tips & Networking Strategies", detail: "Open all morning", room: "Rooms 9" },
-];
-
 interface HiddenRevisionProps {
   onClose: () => void;
   onOpen: (title: string, who: string, desc: string, color: string) => void;
@@ -69,24 +58,6 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
       </div>
 
       <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
-
-      {/* Mini-Classes as text — gray box, same style as odd booth sections */}
-      <section className="section-wide section-alt">
-        <h2 className="hr-mini-classes-heading">Mini-Classes</h2>
-        <ul className="hr-mini-classes-list">
-          {miniClasses.map((c, i) => (
-            <li key={i}>
-              <button
-                className="hr-mini-class-btn"
-                onClick={() => onOpen(classes[i].title, classes[i].who, classes[i].desc, "")}
-              >
-                <span className="hr-checkbox">&#9633;</span>
-                <span>{c.title} ({c.detail} &middot; <span className="hr-room">{c.room}</span>)</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
 
       {/* Map image — constrained to text width, seamless/borderless */}
       <div className="hr-map-wrap">
