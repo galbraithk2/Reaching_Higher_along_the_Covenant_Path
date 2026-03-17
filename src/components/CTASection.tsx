@@ -10,22 +10,31 @@ type Props = {
 };
 
 export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
-  const tapRef = useRef<number>(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const handleTap = useCallback(() => {
-    tapRef.current += 1;
-    if (tapRef.current >= 2) {
-      tapRef.current = 0;
-      if (timerRef.current) clearTimeout(timerRef.current);
-      window.location.href = `${BASE_PATH}/hall`;
-      return;
-    }
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      tapRef.current = 0;
-    }, 600);
+  const makeTapHandler = useCallback((action: () => void) => {
+    let count = 0;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    return () => {
+      count += 1;
+      if (count >= 2) {
+        count = 0;
+        if (timer) clearTimeout(timer);
+        action();
+        return;
+      }
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => { count = 0; }, 600);
+    };
   }, []);
+
+  const handleStake = useCallback(
+    makeTapHandler(() => { window.location.href = `${BASE_PATH}/hall`; }),
+    [makeTapHandler]
+  );
+
+  const handlePlease = useCallback(
+    makeTapHandler(() => { onSecretTrigger?.(); }),
+    [makeTapHandler, onSecretTrigger]
+  );
 
   return (
     <section className="cta-section">
@@ -36,7 +45,7 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
             <span>Stake</span>
           ) : (
             <span
-              onClick={handleTap}
+              onClick={handleStake}
               role="text"
               style={{
                 cursor: "default",
@@ -54,8 +63,8 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
           Whether you&rsquo;re chasing toddlers, starting a career, raising
           teenagers, enjoying retirement, or somewhere in between —{" "}
           <span
-            onDoubleClick={onSecretTrigger}
-            style={{ cursor: "default", userSelect: "none" }}
+            onClick={handlePlease}
+            style={{ cursor: "default", userSelect: "none", touchAction: "manipulation" }}
           >
             please
           </span>{" "}
