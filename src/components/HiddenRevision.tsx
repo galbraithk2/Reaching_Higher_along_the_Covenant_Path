@@ -63,6 +63,19 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
           Saturday, March 21 &middot; 8:45 &ndash; 11:00 am &middot; Stake
           Center
         </p>
+        <p className="hr-highlights">
+          <span className="hr-highlight-pill">8 Mini-Classes</span>
+          <span className="hr-highlight-sep">&middot;</span>
+          <span className="hr-highlight-pill">19 Booths</span>
+          <span className="hr-highlight-sep">&middot;</span>
+          <span className="hr-highlight-pill">Children&rsquo;s Activities</span>
+          <span className="hr-highlight-sep">&middot;</span>
+          <span className="hr-highlight-pill">All ages</span>
+          <span className="hr-highlight-sep">&middot;</span>
+          <span className="hr-highlight-pill">All stages</span>
+          <span className="hr-highlight-sep">&middot;</span>
+          <span className="hr-highlight-pill">All invited</span>
+        </p>
       </div>
 
       <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
