@@ -199,7 +199,7 @@ export const classes: ClassItem[] = [
     schedule: "All morning",
     location: "Priesthood Room",
     who: "John Galbraith",
-    desc: 'Explore the history of the Teton Dam disaster — what happened, what was learned, and the inspiring stories of community resilience and faith that followed.<p style="margin-top:16px"><img src="/Reaching_Higher_along_the_Covenant_Path/images/teton-dam-break.jpg" alt="Teton Dam break — aerial view of the dam collapsing" style="width:85%;max-width:85%;height:auto;border-radius:6px;display:block;margin:0 auto;" /></p>',
+    desc: 'Explore the history of the Teton Dam disaster — what happened, what was learned, and the inspiring stories of community resilience and faith that followed.<p style="margin-top:16px"><img src="/Reaching_Higher_along_the_Covenant_Path/images/teton-dam-break.jpg" alt="Teton Dam break — aerial view of the dam collapsing" style="width:85%;max-width:85%;height:auto;border-radius:6px;display:block;" /></p>',
   },
   {
     ...jobSearchData,
