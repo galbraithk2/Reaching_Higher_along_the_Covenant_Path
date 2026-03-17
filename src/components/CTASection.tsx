@@ -10,24 +10,31 @@ type Props = {
 };
 
 export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
-  const pleaseTapRef = useRef<number>(0);
-  const pleaseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const makeTapHandler = useCallback((action: () => void) => {
+    let count = 0;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    return () => {
+      count += 1;
+      if (count >= 2) {
+        count = 0;
+        if (timer) clearTimeout(timer);
+        action();
+        return;
+      }
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => { count = 0; }, 600);
+    };
+  }, []);
 
-  // "please" requires a double-tap/double-click (works on both desktop and mobile)
-  const handlePlease = useCallback(() => {
-    if (!onSecretTrigger) return;
-    pleaseTapRef.current += 1;
-    if (pleaseTapRef.current >= 2) {
-      pleaseTapRef.current = 0;
-      if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
-      onSecretTrigger();
-      return;
-    }
-    if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
-    pleaseTimerRef.current = setTimeout(() => {
-      pleaseTapRef.current = 0;
-    }, 600);
-  }, [onSecretTrigger]);
+  const handleStake = useCallback(
+    makeTapHandler(() => { window.location.href = `${BASE_PATH}/hall`; }),
+    [makeTapHandler]
+  );
+
+  const handlePlease = useCallback(
+    makeTapHandler(() => { onSecretTrigger?.(); }),
+    [makeTapHandler, onSecretTrigger]
+  );
 
   return (
     <section className="cta-section">
@@ -38,10 +45,10 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
             <span>Stake</span>
           ) : (
             <span
-              onClick={() => { window.location.href = `${BASE_PATH}/hall`; }}
-              role="link"
+              onClick={handleStake}
+              role="text"
               style={{
-                cursor: "pointer",
+                cursor: "default",
                 WebkitUserSelect: "none",
                 userSelect: "none",
                 touchAction: "manipulation",
