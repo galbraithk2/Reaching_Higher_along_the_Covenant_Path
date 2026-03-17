@@ -55,11 +55,6 @@ export default function Home() {
             onOpenFlyers={() => setFlyerOpen(true)}
           />
       </div>
-      {revisionVisible && (
-        <div className="hr-nav-fixed">
-          <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
-        </div>
-      )}
       <SectionNav />
 
       {categories.map((cat, idx) => (

@@ -222,22 +222,6 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
   padding-bottom: 20px;
 }
-/* Fixed nav wrapper that sits above the hidden-revision overlay */
-.hr-nav-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9001;
-}
-.hr-nav-fixed .section-nav {
-  position: static;
-}
-/* Spacer inside hidden-revision that reserves the nav height */
-.hr-nav-spacer {
-  height: 53px;
-}
-
 /* Mini-classes text list (inside section-wide section-alt) */
 .hr-mini-classes-heading {
   font-size: clamp(26px, 3.5vw, 36px);
