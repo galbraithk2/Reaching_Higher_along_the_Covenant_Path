@@ -48,13 +48,18 @@ export default function Home() {
     <>
       <Hero />
       <InviteStrip />
-      <div className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
+      <div id="hr-scroll" className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
         <HiddenRevision
             onClose={() => setRevisionVisible(false)}
             onOpen={openModal}
             onOpenFlyers={() => setFlyerOpen(true)}
           />
       </div>
+      {revisionVisible && (
+        <div className="hr-nav-fixed">
+          <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
+        </div>
+      )}
       <SectionNav />
 
       {categories.map((cat, idx) => (

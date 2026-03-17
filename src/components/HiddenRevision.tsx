@@ -6,7 +6,6 @@ import ClassCard from "@/components/ClassCard";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import SectionNav from "@/components/SectionNav";
 import { booths, classes, categories, catColors } from "@/data/content";
 
 const miniClasses = [
@@ -36,7 +35,8 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
       >
         ✕
       </button>
-      <SectionNav idPrefix="hr-" />
+      {/* Spacer reserves room for the fixed SectionNav rendered in page.tsx */}
+      <div className="hr-nav-spacer" aria-hidden="true" />
 
       {/* Hero */}
       <section className="hero">
