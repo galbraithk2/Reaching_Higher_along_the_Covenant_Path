@@ -10,31 +10,35 @@ type Props = {
 };
 
 export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
-  const makeTapHandler = useCallback((action: () => void) => {
-    let count = 0;
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    return () => {
-      count += 1;
-      if (count >= 2) {
-        count = 0;
-        if (timer) clearTimeout(timer);
-        action();
-        return;
-      }
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => { count = 0; }, 600);
-    };
+  const stakeCountRef = useRef(0);
+  const stakeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleStake = useCallback(() => {
+    stakeCountRef.current += 1;
+    if (stakeCountRef.current >= 2) {
+      stakeCountRef.current = 0;
+      if (stakeTimerRef.current) clearTimeout(stakeTimerRef.current);
+      window.location.href = `${BASE_PATH}/hall`;
+      return;
+    }
+    if (stakeTimerRef.current) clearTimeout(stakeTimerRef.current);
+    stakeTimerRef.current = setTimeout(() => { stakeCountRef.current = 0; }, 600);
   }, []);
 
-  const handleStake = useCallback(
-    makeTapHandler(() => { window.location.href = `${BASE_PATH}/hall`; }),
-    [makeTapHandler]
-  );
+  const pleaseCountRef = useRef(0);
+  const pleaseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handlePlease = useCallback(
-    makeTapHandler(() => { onSecretTrigger?.(); }),
-    [makeTapHandler, onSecretTrigger]
-  );
+  const handlePlease = useCallback(() => {
+    pleaseCountRef.current += 1;
+    if (pleaseCountRef.current >= 2) {
+      pleaseCountRef.current = 0;
+      if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+      onSecretTrigger?.();
+      return;
+    }
+    if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+    pleaseTimerRef.current = setTimeout(() => { pleaseCountRef.current = 0; }, 600);
+  }, [onSecretTrigger]);
 
   return (
     <section className="cta-section">
@@ -64,7 +68,12 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
           teenagers, enjoying retirement, or somewhere in between —{" "}
           <span
             onClick={handlePlease}
-            style={{ cursor: "default", userSelect: "none", touchAction: "manipulation" }}
+            style={{
+              cursor: "default",
+              WebkitUserSelect: "none",
+              userSelect: "none",
+              touchAction: "manipulation",
+            }}
           >
             please
           </span>{" "}
