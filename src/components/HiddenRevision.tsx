@@ -64,7 +64,7 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
           Center
         </p>
         <p className="hr-highlights">
-          8 Mini-Classes &middot; 19 Booths &middot; Children&rsquo;s Activities &middot; All ages &middot; All stages &middot; All invited
+          8 Mini-Classes &middot; 19 Booths &middot; Children&rsquo;s Activities &middot; All ages &middot; All stages &middot; Everyone invited
         </p>
       </div>
 
