@@ -62,7 +62,7 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
       {/* Conference Day Map */}
       <section className="section-wide section-alt">
         <div className="category-header">
-          <h2>🗺️ Conference Day Map</h2>
+          <h2>🧭 Conference Day Map</h2>
         </div>
         <div className="conf-map-scroll-wrap">
           <div className="conf-map-crop">
