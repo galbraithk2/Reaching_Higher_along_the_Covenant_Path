@@ -35,6 +35,8 @@
   --cat-selfreliance-soft: #FFF1F2;
   --cat-classes: #0284C7;
   --cat-classes-soft: #F0F9FF;
+  --cat-map: #92400E;
+  --cat-map-soft: #FFF7ED;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
@@ -449,6 +451,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-nav-btn[data-cat="rising"]       { color: var(--cat-rising);       background: var(--cat-rising-soft); }
 .section-nav-btn[data-cat="selfreliance"] { color: var(--cat-selfreliance); background: var(--cat-selfreliance-soft); }
 .section-nav-btn[data-cat="classes"]      { color: var(--cat-classes);      background: var(--cat-classes-soft); }
+.section-nav-btn[data-cat="map"]          { color: var(--cat-map);          background: var(--cat-map-soft); }
 
 .section-nav-btn:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.10);
@@ -464,6 +467,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-nav-btn--active[data-cat="rising"]       { background: var(--cat-rising);       color: #fff; border-color: var(--cat-rising); }
 .section-nav-btn--active[data-cat="selfreliance"] { background: var(--cat-selfreliance); color: #fff; border-color: var(--cat-selfreliance); }
 .section-nav-btn--active[data-cat="classes"]      { background: var(--cat-classes);      color: #fff; border-color: var(--cat-classes); }
+.section-nav-btn--active[data-cat="map"]          { background: var(--cat-map);          color: #fff; border-color: var(--cat-map); }
 
 /* Show full labels on wider screens, short labels on narrow */
 .section-nav-short { display: none; }
