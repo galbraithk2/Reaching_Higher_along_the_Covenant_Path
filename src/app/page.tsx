@@ -49,7 +49,11 @@ export default function Home() {
       <Hero />
       <InviteStrip />
       <div className={`hidden-revision${revisionVisible ? " visible" : ""}`}>
-        <HiddenRevision onClose={() => setRevisionVisible(false)} />
+        <HiddenRevision
+            onClose={() => setRevisionVisible(false)}
+            onOpen={openModal}
+            onOpenFlyers={() => setFlyerOpen(true)}
+          />
       </div>
       <SectionNav />
 

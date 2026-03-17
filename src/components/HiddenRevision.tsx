@@ -1,8 +1,12 @@
-import { BASE_PATH } from "@/lib/basePath";
+"use client";
 
-interface HiddenRevisionProps {
-  onClose: () => void;
-}
+import { BASE_PATH } from "@/lib/basePath";
+import BoothCard from "@/components/BoothCard";
+import ClassCard from "@/components/ClassCard";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
+import { booths, classes, categories, catColors } from "@/data/content";
 
 const miniClasses = [
   { title: "President Edwin Wells", detail: "Every 20 min", room: "Chapel" },
@@ -15,7 +19,13 @@ const miniClasses = [
   { title: "Job Search, Résumé Tips & Networking Strategies", detail: "Open all morning", room: "Rooms 9" },
 ];
 
-export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
+interface HiddenRevisionProps {
+  onClose: () => void;
+  onOpen: (title: string, who: string, desc: string, color: string) => void;
+  onOpenFlyers: () => void;
+}
+
+export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: HiddenRevisionProps) {
   return (
     <>
       <button
@@ -79,6 +89,53 @@ export default function HiddenRevision({ onClose }: HiddenRevisionProps) {
           />
         </div>
       </div>
+
+      {/* ── Replicated landing page content below the map ── */}
+
+      {categories.map((cat, idx) => (
+        <ScrollReveal key={cat.key}>
+          <section
+            id={`hr-${cat.key}`}
+            className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
+          >
+            <div className="category-header">
+              <h2>{cat.emoji} {cat.label}</h2>
+              <p>{cat.quote}</p>
+            </div>
+            <div className="booth-grid">
+              {booths[cat.key].map((booth, i) => (
+                <BoothCard
+                  key={i}
+                  booth={booth}
+                  cat={cat.key}
+                  color={catColors[cat.key]}
+                  onOpen={onOpen}
+                />
+              ))}
+            </div>
+          </section>
+        </ScrollReveal>
+      ))}
+
+      <ScrollReveal>
+        <section id="hr-classes" className="classes-bg">
+          <div className="section-wide">
+            <div className="category-header">
+              <h2>📚 Mini Classes</h2>
+              <p>Short workshops on topics that matter</p>
+            </div>
+            <div className="class-grid">
+              {classes.map((classItem, i) => (
+                <ClassCard key={i} classItem={classItem} onOpen={onOpen} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <CTASection onOpenFlyers={onOpenFlyers} />
+
+      <Footer />
     </>
   );
 }
