@@ -224,29 +224,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Highlights row under the date strip */
 .hr-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 6px 8px;
+  font-family: var(--font-heading), 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(13px, 1.8vw, 16px);
+  color: var(--text-primary);
+  text-align: center;
   padding-bottom: 16px;
   margin: 0;
-}
-.hr-highlight-pill {
-  background: var(--gold);
-  color: #fff;
-  font-family: var(--font-heading), 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: clamp(12px, 1.4vw, 14px);
-  letter-spacing: 0.03em;
-  padding: 4px 12px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-.hr-highlight-sep {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1;
+  letter-spacing: 0.3px;
 }
 /* Mini-classes text list (inside section-wide section-alt) */
 .hr-mini-classes-heading {
