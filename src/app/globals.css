@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--surface);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.2s var(--ease);
 }
