@@ -10,22 +10,24 @@ type Props = {
 };
 
 export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStakeNav }: Props) {
-  const tapRef = useRef<number>(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pleaseTapRef = useRef<number>(0);
+  const pleaseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleTap = useCallback(() => {
-    tapRef.current += 1;
-    if (tapRef.current >= 2) {
-      tapRef.current = 0;
-      if (timerRef.current) clearTimeout(timerRef.current);
-      window.location.href = `${BASE_PATH}/hall`;
+  // "please" requires a double-tap/double-click (works on both desktop and mobile)
+  const handlePlease = useCallback(() => {
+    if (!onSecretTrigger) return;
+    pleaseTapRef.current += 1;
+    if (pleaseTapRef.current >= 2) {
+      pleaseTapRef.current = 0;
+      if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+      onSecretTrigger();
       return;
     }
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      tapRef.current = 0;
+    if (pleaseTimerRef.current) clearTimeout(pleaseTimerRef.current);
+    pleaseTimerRef.current = setTimeout(() => {
+      pleaseTapRef.current = 0;
     }, 600);
-  }, []);
+  }, [onSecretTrigger]);
 
   return (
     <section className="cta-section">
@@ -36,10 +38,10 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
             <span>Stake</span>
           ) : (
             <span
-              onClick={handleTap}
-              role="text"
+              onClick={() => { window.location.href = `${BASE_PATH}/hall`; }}
+              role="link"
               style={{
-                cursor: "default",
+                cursor: "pointer",
                 WebkitUserSelect: "none",
                 userSelect: "none",
                 touchAction: "manipulation",
@@ -54,8 +56,8 @@ export default function CTASection({ onOpenFlyers, onSecretTrigger, disableStake
           Whether you&rsquo;re chasing toddlers, starting a career, raising
           teenagers, enjoying retirement, or somewhere in between —{" "}
           <span
-            onDoubleClick={onSecretTrigger}
-            style={{ cursor: "default", userSelect: "none" }}
+            onClick={handlePlease}
+            style={{ cursor: "default", userSelect: "none", touchAction: "manipulation" }}
           >
             please
           </span>{" "}
