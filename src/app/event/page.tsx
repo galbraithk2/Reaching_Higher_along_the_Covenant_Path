@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Hero from "@/components/Hero";
 import InviteStrip from "@/components/InviteStrip";
 import SectionNav from "@/components/SectionNav";
@@ -22,6 +23,7 @@ type ModalState = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [modal, setModal] = useState<ModalState>({
     isOpen: false,
     title: "",
@@ -44,6 +46,31 @@ export default function Home() {
 
   return (
     <>
+      <button
+        onClick={() => router.push("/")}
+        aria-label="Close and return to main page"
+        style={{
+          position: "fixed",
+          top: "16px",
+          right: "16px",
+          zIndex: 9999,
+          width: "44px",
+          height: "44px",
+          borderRadius: "50%",
+          border: "none",
+          background: "rgba(0,0,0,0.55)",
+          color: "#fff",
+          fontSize: "22px",
+          lineHeight: 1,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        ×
+      </button>
+
       <Hero />
       <InviteStrip />
       <SectionNav />
