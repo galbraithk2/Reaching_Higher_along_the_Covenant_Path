@@ -3,11 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 
 const navItems = [
+  { id: "map", label: "Conference Map", short: "Map" },
+  { id: "classes", label: "Mini-Classes", short: "Mini-Classes" },
   { id: "temple", label: "Temple & Family History", short: "Temple" },
   { id: "missionary", label: "Missionary Work", short: "Missionary" },
   { id: "rising", label: "Rising Generation", short: "Rising Gen" },
   { id: "selfreliance", label: "Self-Reliance", short: "Self-Reliance" },
-  { id: "classes", label: "Mini Classes", short: "Classes" },
 ];
 
 interface SectionNavProps {

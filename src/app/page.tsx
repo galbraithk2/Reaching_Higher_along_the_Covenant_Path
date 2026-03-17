@@ -80,7 +80,7 @@ export default function Home() {
       <SectionNav idPrefix="hr-" scrollContainerId="hr-scroll" navId="hr-section-nav" />
 
       {/* Conference Day Map */}
-      <section className="section-wide section-alt">
+      <section id="hr-map" className="section-wide section-alt">
         <div className="category-header">
           <h2>🧭 Conference Day Map</h2>
         </div>
