@@ -141,7 +141,7 @@ export default function Home() {
 
       <CTASection
         onOpenFlyers={() => setFlyerOpen(true)}
-        onSecretTrigger={() => router.push("/hall")}
+        onSecretTrigger={() => router.push("/")}
       />
 
       <Footer />
