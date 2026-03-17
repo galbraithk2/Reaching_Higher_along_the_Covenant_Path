@@ -80,15 +80,17 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
         </div>
       </section>
 
-      {/* Map image — full-bleed, wallpaper style */}
+      {/* Map image — constrained to text width, seamless/borderless */}
       <div className="hr-map-wrap">
-        <div className="hr-map-crop">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`${BASE_PATH}/images/MapAndClasses.png`}
-            alt="Booth and mini-class location map"
-            className="hr-map-img"
-          />
+        <div className="hr-map-inner">
+          <div className="hr-map-crop">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${BASE_PATH}/images/MapAndClasses.png`}
+              alt="Booth and mini-class location map"
+              className="hr-map-img"
+            />
+          </div>
         </div>
       </div>
 
@@ -98,22 +100,24 @@ export default function HiddenRevision({ onClose, onOpen, onOpenFlyers }: Hidden
         <ScrollReveal key={cat.key}>
           <section
             id={`hr-${cat.key}`}
-            className={`section-wide${idx % 2 !== 0 ? " section-alt" : ""}`}
+            className={idx % 2 !== 0 ? "section-alt" : ""}
           >
-            <div className="category-header">
-              <h2>{cat.emoji} {cat.label}</h2>
-              <p>{cat.quote}</p>
-            </div>
-            <div className="booth-grid">
-              {booths[cat.key].map((booth, i) => (
-                <BoothCard
-                  key={i}
-                  booth={booth}
-                  cat={cat.key}
-                  color={catColors[cat.key]}
-                  onOpen={onOpen}
-                />
-              ))}
+            <div className="section-wide">
+              <div className="category-header">
+                <h2>{cat.emoji} {cat.label}</h2>
+                <p>{cat.quote}</p>
+              </div>
+              <div className="booth-grid">
+                {booths[cat.key].map((booth, i) => (
+                  <BoothCard
+                    key={i}
+                    booth={booth}
+                    cat={cat.key}
+                    color={catColors[cat.key]}
+                    onOpen={onOpen}
+                  />
+                ))}
+              </div>
             </div>
           </section>
         </ScrollReveal>
