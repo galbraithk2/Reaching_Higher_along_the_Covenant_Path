@@ -222,15 +222,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
   padding-bottom: 20px;
 }
-/* Mini-classes text section */
-.hr-mini-classes {
-  background: var(--bg-subtle);
-  padding: 40px 20px 36px;
-}
-.hr-mini-classes-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+/* Mini-classes text list (inside section-wide section-alt) */
 .hr-mini-classes-heading {
   font-size: clamp(26px, 3.5vw, 36px);
   font-weight: 700;
@@ -293,11 +285,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .hr-mini-classes { padding: 36px 16px 32px; }
   .hr-map-wrap { padding: 0 16px 32px; }
 }
 @media (max-width: 640px) {
-  .hr-mini-classes { padding: 32px 16px 28px; }
   .hr-mini-classes-list li { font-size: 15px; }
   .hr-map-wrap { padding: 0 16px 28px; }
 }
