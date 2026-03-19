@@ -88,7 +88,7 @@ export default function Home() {
           <div className="conf-map-crop">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`${BASE_PATH}/images/MapOnly.png`}
+              src={`${BASE_PATH}/images/MapAndClasses.png`}
               alt="Booth and mini-class location map"
               className="conf-map-img"
             />
