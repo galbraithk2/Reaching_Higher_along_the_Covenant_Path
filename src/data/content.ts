@@ -156,13 +156,13 @@ export const classes: ClassItem[] = [
     desc: "Join President Wells for a brief, uplifting message about walking the covenant path. Sessions repeat every 20 minutes throughout the morning.",
   },
   {
-    title: "Teaching within the Home",
+    title: "Spiritual Survival and the Holy Ghost: Preparing Your Family",
     cardTitle: "Relief Society President Kristin Galbraith & Kevin Galbraith",
-    subtitle: "Teaching within the Home",
+    subtitle: "Spiritual Survival and the Holy Ghost: Preparing Your Family",
     schedule: "Every 20 min",
     location: "High Council Room",
     who: "Kristin & Kevin Galbraith",
-    desc: 'Discover meaningful ways to teach the gospel within your home. Share ideas and learn from others about creating a home centered on Christ.<div class="download-icons-row"><a href="/Reaching_Higher_along_the_Covenant_Path/pdfs/The Covenant Path; Preparing Your Families-3-21-2026.pdf" download="The Covenant Path; Preparing Your Families-3-21-2026.pdf" class="download-icon-link"><img src="/Reaching_Higher_along_the_Covenant_Path/images/vital-documents-pdf.png" alt="Download PDF" class="download-icon-img" /><span class="download-icon-label">Download PDF</span></a><a href="/Reaching_Higher_along_the_Covenant_Path/pdfs/The Covenant Path; Preparing Your Families-3-21-2026.docx" download="The Covenant Path; Preparing Your Families-3-21-2026.docx" class="download-icon-link"><img src="/Reaching_Higher_along_the_Covenant_Path/images/vital-documents-doc.png" alt="Download Word Document" class="download-icon-img" /><span class="download-icon-label">Download Word Doc</span></a></div>',
+    desc: 'Discover meaningful ways to teach the gospel within your home. Share ideas and learn from others about creating a home centered on Christ.<div class="download-icons-row"><a href="/Reaching_Higher_along_the_Covenant_Path/pdfs/The Covenant Path; Preparing Your Families-3-21-2026.pdf" download="The Covenant Path; Preparing Your Families-3-21-2026.pdf" class="download-icon-link"><img src="/Reaching_Higher_along_the_Covenant_Path/images/spiritual-survival-pdf.png" alt="Download PDF" class="download-icon-img" /><span class="download-icon-label">Download PDF</span></a><a href="/Reaching_Higher_along_the_Covenant_Path/pdfs/The Covenant Path; Preparing Your Families-3-21-2026.docx" download="The Covenant Path; Preparing Your Families-3-21-2026.docx" class="download-icon-link"><img src="/Reaching_Higher_along_the_Covenant_Path/images/spiritual-survival-doc.png" alt="Download Word Document" class="download-icon-img" /><span class="download-icon-label">Download Word Doc</span></a></div>',
   },
   {
     title: "A Safety and Technology Plan Discussion",
