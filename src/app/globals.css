@@ -293,11 +293,13 @@ h1, h2, h3, h4, h5, h6 {
   /* inherits section-wide padding/max-width */
 }
 
-/* Wrapper: clips corners and adds depth */
+/* Wrapper: clips corners, adds depth, and provides white border around image */
 .conf-map-scroll-wrap {
   border-radius: 12px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.10);
   overflow: hidden;
+  background: #fff;
+  padding: 10px;
 }
 
 /* No cropping needed — image is map only */
