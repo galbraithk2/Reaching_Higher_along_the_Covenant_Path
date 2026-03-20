@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <clipPath id="outer-doc">
+      <rect width="400" height="400" rx="32"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#outer-doc)">
+    <!-- Main background -->
+    <rect width="400" height="400" fill="#2B5CE6"/>
+    <!-- Bottom darker band -->
+    <rect x="0" y="290" width="400" height="110" fill="#1A3A9E"/>
+
+    <!-- Document white shape -->
+    <path d="M118 52 L248 52 L278 82 L278 272 L118 272 Z" fill="white"/>
+    <!-- Folded corner triangle -->
+    <path d="M248 52 L278 82 L248 82 Z" fill="#A0BEF5"/>
+
+    <!-- W badge -->
+    <rect x="150" y="116" width="76" height="34" rx="5" fill="#1A3A9E"/>
+    <text x="188" y="139" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">W</text>
+
+    <!-- Content lines -->
+    <rect x="148" y="168" width="96" height="8" rx="4" fill="#A0BEF5"/>
+    <rect x="148" y="186" width="84" height="8" rx="4" fill="#A0BEF5"/>
+    <rect x="148" y="204" width="72" height="8" rx="4" fill="#A0BEF5"/>
+
+    <!-- Bottom label -->
+    <text x="200" y="333" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="0.5">AND SHOULD WE DIE</text>
+    <text x="200" y="362" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#A0BEF5" text-anchor="middle">WORD DOC</text>
+  </g>
+</svg>
