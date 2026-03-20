@@ -1172,6 +1172,21 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.01em;
 }
 
+.download-section-divider {
+  border: none;
+  border-top: 1px solid var(--border, #E4E4E7);
+  margin: 20px 0 16px;
+}
+
+.download-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary, #18181B);
+  text-align: center;
+  margin: 0 0 14px;
+  letter-spacing: 0.01em;
+}
+
 /* ═══ FOOTER ═══ */
 footer {
   text-align: center;
